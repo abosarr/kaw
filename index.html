@@ -446,21 +446,21 @@
       <div class="hint">Choisissez votre comité (déjà choisi si vous avez reçu le lien de votre responsable).</div>
 
       <label for="nom">Nom complet</label>
-      <input type="text" id="nom" placeholder="Prénom et nom" autocomplete="name" style="text-transform:uppercase;" />
+      <input type="text" id="nom" placeholder="Prénom et nom" autocomplete="nope" name="adk-nom" style="text-transform:uppercase;" />
 
       <label for="cni">Numéro de carte d'identité (CNI)</label>
-      <input type="text" id="cni" placeholder="Numéro de la carte d'identité" />
+      <input autocomplete="nope" name="adk-cni" type="text" id="cni" placeholder="Numéro de la carte d'identité" />
       <div class="hint">Une seule confirmation est conservée par numéro de CNI ; une nouvelle soumission remplace la précédente.</div>
       <p class="hint" id="dup-warning" style="display:none;color:#1B3B6B;background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 10px;margin-top:8px;"></p>
 
       <label for="carte-electeur">Numéro de carte d'électeur <span style="font-weight:400;color:#4A6682;">(optionnel)</span></label>
-      <input type="text" id="carte-electeur" placeholder="Numéro de la carte d'électeur (facultatif)" />
+      <input autocomplete="nope" name="adk-carte-electeur" type="text" id="carte-electeur" placeholder="Numéro de la carte d'électeur (facultatif)" />
 
       <label for="centre-vote">Centre de vote <span style="font-weight:400;color:#4A6682;">(optionnel)</span></label>
-      <input type="text" id="centre-vote" placeholder="Ex : École primaire de Koungheul" />
+      <input autocomplete="nope" name="adk-centre-vote" type="text" id="centre-vote" placeholder="Ex : École primaire de Koungheul" />
 
       <label for="bureau-vote">Bureau de vote <span style="font-weight:400;color:#4A6682;">(optionnel)</span></label>
-      <input type="text" id="bureau-vote" placeholder="Ex : Bureau n° 3" />
+      <input autocomplete="nope" name="adk-bureau-vote" type="text" id="bureau-vote" placeholder="Ex : Bureau n° 3" />
 
       <label>Photo <span style="font-weight:400;color:#4A6682;">(optionnel)</span></label>
       <div style="display:flex;justify-content:center;margin-top:8px;">
@@ -479,10 +479,10 @@
       <div class="hint" style="text-align:center;">Visage de face, bien éclairé. La photo apparaît sur la carte de membre.</div>
 
       <label for="quartier">Quartier / Adresse</label>
-      <input type="text" id="quartier" placeholder="Ex : Quartier, ville" />
+      <input autocomplete="nope" name="adk-quartier" type="text" id="quartier" placeholder="Ex : Quartier, ville" />
 
       <label for="tel">Téléphone</label>
-      <input type="tel" id="tel" placeholder="Ex : 77 123 45 67" />
+      <input autocomplete="nope" name="adk-tel" type="text" inputmode="tel" id="tel" placeholder="Ex : 77 123 45 67" />
 
       <label>Adhésion au mouvement</label>
       <div class="accord-group">
@@ -532,10 +532,19 @@
     <div class="gate" id="dash-gate">
       <div class="card">
         <p class="doc-title" style="margin-bottom:2px;">Espace responsable</p>
+        <div id="setup-box" style="display:none;">
+          <p style="color:var(--ink);"><b>Première configuration.</b> Choisissez le <b>code de coordination générale</b> (6 caractères minimum). Il donne accès à tous les comités : gardez-le pour vous.</p>
+          <input autocomplete="new-password" name="adk-setup-1" type="password" class="search" id="setup-code" placeholder="Choisir le code" style="margin-top:14px;text-align:center;" />
+          <input autocomplete="new-password" name="adk-setup-2" type="password" class="search" id="setup-code2" placeholder="Confirmer le code" style="margin-top:10px;text-align:center;" />
+          <button class="btn-primary" id="setup-btn" style="margin-top:12px;">Définir le code</button>
+          <p class="error-msg" id="setup-error"></p>
+        </div>
+        <div id="login-box">
         <p>Entrez le code d'accès de votre comité (ou le code de coordination générale).</p>
-        <input type="password" class="search" id="pin-input" placeholder="Code d'accès" style="margin-top:16px;text-align:center;letter-spacing:.1em;" />
+        <input autocomplete="new-password" name="adk-code-acces" type="password" class="search" id="pin-input" placeholder="Code d'accès" style="margin-top:16px;text-align:center;letter-spacing:.1em;" />
         <button class="btn-primary" id="pin-submit" style="margin-top:12px;">Accéder</button>
         <p class="error-msg" id="pin-error"></p>
+        </div>
       </div>
     </div>
 
@@ -546,13 +555,13 @@
         <p class="doc-title" id="mg-title" style="font-size:16px;margin-bottom:14px;"></p>
         <div id="mg-form">
           <label for="mg-nom" style="margin-top:0;">Nom du comité</label>
-          <input type="text" id="mg-nom" placeholder="Ex : Comité de Koungheul Escale" />
+          <input autocomplete="nope" name="adk-mg-nom" type="text" id="mg-nom" placeholder="Ex : Comité de Koungheul Escale" />
           <label for="mg-resp">Responsable du comité</label>
-          <input type="text" id="mg-resp" placeholder="Prénom et nom" />
+          <input autocomplete="nope" name="adk-mg-resp" type="text" id="mg-resp" placeholder="Prénom et nom" />
           <label for="mg-tel">Téléphone du responsable</label>
-          <input type="tel" id="mg-tel" placeholder="Ex : 77 123 45 67" />
+          <input autocomplete="nope" name="adk-mg-tel" type="text" inputmode="tel" id="mg-tel" placeholder="Ex : 77 123 45 67" />
           <label for="mg-code">Code d'accès du responsable</label>
-          <input type="text" id="mg-code" placeholder="Laisser vide pour générer un code" />
+          <input autocomplete="nope" name="adk-mg-code" type="text" id="mg-code" placeholder="Laisser vide pour générer un code" />
           <div class="hint">Au moins 4 caractères. Le responsable l'utilise pour ouvrir « Espace responsable » et gérer son comité.</div>
           <div style="display:flex;gap:10px;margin-top:14px;align-items:center;">
             <button class="btn-primary" id="mg-save" style="flex:1;"></button>
@@ -561,6 +570,12 @@
           <p class="error-msg" id="mg-err"></p>
         </div>
         <div id="mg-list" style="margin-top:18px;overflow-x:auto;"></div>
+        <div id="adm-code-box" style="display:none;margin-top:18px;border-top:1px solid var(--hairline);padding-top:14px;">
+          <label for="adm-new" style="margin-top:0;">Changer le code de coordination</label>
+          <input autocomplete="nope" name="adk-adm-new" type="text" id="adm-new" placeholder="Nouveau code (6 caractères minimum)" />
+          <button class="btn-primary" id="adm-save" style="margin-top:10px;">Changer le code</button>
+          <p class="error-msg" id="adm-err"></p>
+        </div>
       </div>
       <div class="stat-row">
         <div class="stat"><div class="n" id="stat-total">0</div><div class="l">Confirmations</div></div>
@@ -568,7 +583,7 @@
         <div class="stat"><div class="n" id="stat-non" style="color:var(--red);">0</div><div class="l">Refus « Non »</div></div>
       </div>
       <div class="toolbar">
-        <input type="text" class="search" id="search-input" placeholder="Rechercher par nom, CNI, quartier ou centre de vote…" />
+        <input autocomplete="off" type="text" class="search" id="search-input" placeholder="Rechercher par nom, CNI, quartier ou centre de vote…" />
         <select class="search" id="filter-accord" style="max-width:150px;flex:none;">
           <option value="">Toutes les réponses</option>
           <option value="Oui">Oui uniquement</option>
@@ -627,7 +642,7 @@
     <p class="hint" style="margin-bottom:16px;">À afficher, partager ou imprimer pour inviter les membres à adhérer en ligne.</p>
     <div id="qr-canvas-wrap" style="display:flex;justify-content:center;margin-bottom:16px;"></div>
     <label style="text-align:left;">Lien du formulaire</label>
-    <input type="text" id="qr-link" readonly style="text-align:center;font-family:'IBM Plex Mono',monospace;font-size:12px;" />
+    <input autocomplete="off" type="text" id="qr-link" readonly style="text-align:center;font-family:'IBM Plex Mono',monospace;font-size:12px;" />
     <div class="submit-row" style="margin-top:14px;flex-direction:column;gap:8px;">
       <button class="btn-primary" id="qr-copy-btn" style="width:100%;">Copier le lien</button>
       <button class="btn-export" id="qr-print-btn" style="width:100%;background:var(--card);color:var(--ink-soft);border-color:var(--hairline);">Imprimer l'affiche</button>
@@ -636,15 +651,17 @@
   </div>
 </div>
 
+<div style="text-align:center;font-size:11px;color:#4A6682;padding:14px 10px 24px;">AND DOLEL KAW — Plate-forme d'adhésion · version du 5 octobre 2026</div>
+
 <div class="lightbox" id="mb-modal">
   <div class="card" style="max-width:420px;width:100%;max-height:90vh;overflow:auto;padding:24px;">
     <p class="doc-title" style="margin-bottom:14px;">Modifier l'adhérent</p>
-    <label for="mb-nom" style="margin-top:0;">Nom complet</label><input type="text" id="mb-nom" style="text-transform:uppercase;" />
-    <label for="mb-section">Quartier / Adresse</label><input type="text" id="mb-section" />
-    <label for="mb-tel">Téléphone</label><input type="tel" id="mb-tel" />
-    <label for="mb-carte">Carte d'électeur (optionnel)</label><input type="text" id="mb-carte" />
-    <label for="mb-centre">Centre de vote (optionnel)</label><input type="text" id="mb-centre" />
-    <label for="mb-bureau">Bureau de vote (optionnel)</label><input type="text" id="mb-bureau" />
+    <label for="mb-nom" style="margin-top:0;">Nom complet</label><input autocomplete="nope" name="adk-mb-nom" type="text" id="mb-nom" style="text-transform:uppercase;" />
+    <label for="mb-section">Quartier / Adresse</label><input autocomplete="nope" name="adk-mb-section" type="text" id="mb-section" />
+    <label for="mb-tel">Téléphone</label><input autocomplete="nope" name="adk-mb-tel" type="text" inputmode="tel" id="mb-tel" />
+    <label for="mb-carte">Carte d'électeur (optionnel)</label><input autocomplete="nope" name="adk-mb-carte" type="text" id="mb-carte" />
+    <label for="mb-centre">Centre de vote (optionnel)</label><input autocomplete="nope" name="adk-mb-centre" type="text" id="mb-centre" />
+    <label for="mb-bureau">Bureau de vote (optionnel)</label><input autocomplete="nope" name="adk-mb-bureau" type="text" id="mb-bureau" />
     <label for="mb-accord">Adhésion</label>
     <select id="mb-accord" class="search" style="width:100%;flex:none;"><option value="Oui">Oui</option><option value="Non">Non</option></select>
     <p class="hint">Le numéro de CNI ne peut pas être modifié.</p>
@@ -668,7 +685,7 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
 // 1) Collez ici l'URL de votre déploiement Google Apps Script (voir Code.gs fourni).
 // 2) Le code d'accès n'est plus stocké ici : il est saisi à l'écran et vérifié côté
 //    serveur (voir la constante SECRET dans Code.gs).
-const API_URL = "https://script.google.com/macros/s/AKfycbylshIQsIDDBkmHwV_nyHzj4Wc-IKjqDqhma04bksTN7wV27C5dsHFqcuF-wKcjahEN5w/exec"
+const API_URL = "https://script.google.com/macros/s/AKfycbyBNtgjN-OSarsbm7_-IW0LYNkOELJjfxYxUb4mp0_OrPah3AHaamnrpd_kPbyhchictw/exec";   // ← collez ici l'URL /exec de VOTRE déploiement Google Apps Script (voir Code.gs)
 if(!API_URL){
   // Aucune requête n'est envoyée tant que le serveur du mouvement n'est pas renseigné.
   window.fetch = () => Promise.reject(new Error('Plate-forme non configurée : renseignez API_URL.'));
@@ -749,6 +766,7 @@ function renderManage(){
   $('manage-btn').textContent = admin ? 'Gérer les comités' : 'Gérer mon comité';
   $('mg-title').textContent = admin ? 'Gestion des comités' : 'Gestion de mon comité';
   $('mg-nom').readOnly = !admin;
+  $('adm-code-box').style.display = admin ? 'block' : 'none';
   if(!admin && manageComites[0] && editingId !== manageComites[0].id) fillMgForm(manageComites[0]);
   else if(admin && !editingId) $('mg-save').textContent = 'Créer le comité';
   $('mg-list').innerHTML = !manageComites.length ? '<div class="empty">Aucun comité créé pour le moment. Remplissez le formulaire ci-dessus pour créer le premier.</div>' :
@@ -1712,6 +1730,52 @@ document.getElementById('export-btn').addEventListener('click', ()=>{
   URL.revokeObjectURL(url);
 });
 
+
+// ---------- ANTI-PRÉREMPLISSAGE DU NAVIGATEUR ----------
+['nom','cni','carte-electeur','centre-vote','bureau-vote','quartier','tel'].forEach(id=>{
+  const el = document.getElementById(id); let typed = false;
+  ['keydown','paste'].forEach(ev => el.addEventListener(ev, ()=>{ typed = true; }));
+  [300, 1200, 2500].forEach(ms => setTimeout(()=>{ if(!typed && document.activeElement !== el) el.value = ''; }, ms));
+});
+
+// ---------- PREMIÈRE CONFIGURATION / CHANGEMENT DU CODE DE COORDINATION ----------
+async function checkSetup(){
+  if(!API_URL) return;
+  try{
+    const r = await fetch(API_URL + '?action=ping'); const d = await r.json();
+    if(d && d.ok && d.adminDefini === false){
+      document.getElementById('setup-box').style.display = 'block';
+      document.getElementById('login-box').style.display = 'none';
+    }
+  }catch(e){}
+}
+document.getElementById('setup-btn').addEventListener('click', async ()=>{
+  const err = document.getElementById('setup-error'); err.style.display = 'none';
+  const c = document.getElementById('setup-code').value.trim(), c2 = document.getElementById('setup-code2').value.trim();
+  const fail = m => { err.textContent = m; err.style.display = 'block'; };
+  if(c.length < 6) return fail('Le code doit contenir au moins 6 caractères.');
+  if(c !== c2) return fail('Les deux codes ne correspondent pas.');
+  const btn = document.getElementById('setup-btn'); btn.disabled = true;
+  try{
+    await api({action:'admin_setup', code:c});
+    document.getElementById('setup-box').style.display = 'none';
+    document.getElementById('login-box').style.display = '';
+    document.getElementById('pin-input').value = c;
+    await checkPin();
+  }catch(e){ fail(e.message); }
+  btn.disabled = false;
+});
+document.getElementById('adm-save').addEventListener('click', async ()=>{
+  const err = document.getElementById('adm-err'); err.style.display = 'none';
+  const c = document.getElementById('adm-new').value.trim();
+  if(c.length < 6){ err.textContent = 'Le code doit contenir au moins 6 caractères.'; err.style.display = 'block'; return; }
+  try{
+    await api({action:'admin_change', code:c});
+    sessionSecret = c; document.getElementById('adm-new').value = '';
+    alert('Code de coordination modifié. Utilisez-le à la prochaine connexion.');
+  }catch(e){ err.textContent = e.message; err.style.display = 'block'; }
+});
+checkSetup();
 </script>
 </body>
 </html>
