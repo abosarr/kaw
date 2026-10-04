@@ -1,0 +1,1717 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Adhésion — AND DOLEL KAW · Koungheul</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#D9EAFB;
+    --card:#FFFFFF;
+    --ink:#0F2A44;
+    --ink-soft:#34506B;
+    --hairline:#B4CFE8;
+    --sn-green:#00853F;
+    --sn-green-soft:#E3F3EA;
+    --sn-yellow:#FDEF42;
+    --sn-yellow-soft:#FFFAE0;
+    --sn-red:#E31B23;
+    --sn-red-soft:#FBE7E7;
+    --accent:#00853F;
+    --accent-soft:#E3F3EA;
+    --green:#00853F;
+    --green-soft:#E3F3EA;
+    --red:#E31B23;
+    --red-soft:#FBE7E7;
+    --radius:14px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:
+      radial-gradient(circle at 8% 0%, rgba(255,255,255,0.70), transparent 45%),
+      radial-gradient(circle at 100% 14%, rgba(110,165,225,0.28), transparent 45%),
+      radial-gradient(circle at 50% 100%, rgba(255,255,255,0.45), transparent 50%),
+      var(--paper);
+    background-attachment:fixed;
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    min-height:100vh;
+    -webkit-font-smoothing:antialiased;
+  }
+  .flag-bar{
+    height:6px;width:100%;
+    background:linear-gradient(90deg, var(--sn-green) 0 33.33%, var(--sn-yellow) 33.33% 66.66%, var(--sn-red) 66.66% 100%);
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:32px 20px 80px;}
+
+  .letterhead{
+    text-align:center;padding:14px 10px 16px;margin-bottom:6px;
+    border-bottom:1px solid var(--hairline);
+  }
+  .letterhead .lh-line{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:.05em;color:var(--ink-soft);
+    line-height:1.7;
+  }
+  .letterhead .lh-republique{
+    font-weight:700;letter-spacing:.12em;color:var(--ink);font-size:12px;
+  }
+  .letterhead .lh-parti{
+    font-family:'Fraunces',serif;font-weight:600;font-size:14px;
+    color:var(--sn-green);letter-spacing:0;margin-top:2px;
+  }
+  .letterhead .lh-president{
+    font-weight:600;color:var(--ink);
+  }
+  .letterhead .lh-cellule{
+    font-weight:700;color:var(--sn-red);
+  }
+  .masthead{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:22px 0 20px;margin-bottom:24px;
+    border-bottom:3px solid var(--sn-green);
+  }
+  .masthead h1{
+    font-family:'Fraunces',serif;
+    font-size:21px;font-weight:600;letter-spacing:-0.01em;
+    margin:0;
+  }
+  .masthead .eyebrow{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent);margin:0 0 4px;font-weight:700;
+  }
+
+  .tabs{display:flex;gap:6px;margin-bottom:28px;}
+  .tab{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+    padding:10px 16px;border:1px solid var(--hairline);
+    background:var(--card);color:var(--ink-soft);
+    border-radius:8px 8px 0 0;cursor:pointer;
+    border-bottom:none;position:relative;top:1px;
+  }
+  .tab.active{
+    color:var(--sn-green);background:var(--paper);
+    border-color:var(--sn-green);border-bottom:1px solid var(--paper);
+    font-weight:700;
+  }
+  .panel{display:none;}
+  .panel.active{display:block;}
+
+  .card{
+    background:var(--card);
+    border:1px solid var(--hairline);
+    border-top:4px solid var(--sn-green);
+    border-radius:var(--radius);
+    padding:32px;
+    box-shadow:0 4px 16px rgba(27,43,34,0.06);
+  }
+  .card + .card{margin-top:16px;}
+  .doc-title{
+    font-family:'Fraunces',serif;font-size:19px;font-weight:600;
+    margin:0 0 4px;color:var(--ink);
+  }
+  .doc-sub{
+    font-size:13.5px;color:var(--ink-soft);margin:0 0 28px;line-height:1.5;
+  }
+
+  label{
+    display:block;font-size:12px;font-weight:600;letter-spacing:.02em;
+    color:var(--ink-soft);margin-bottom:6px;margin-top:20px;
+  }
+  label:first-of-type{margin-top:0;}
+  input[type=text],input[type=tel]{
+    width:100%;padding:11px 13px;border:1px solid var(--hairline);
+    border-radius:8px;font-family:'Inter',sans-serif;font-size:14.5px;
+    background:#FCFCFD;color:var(--ink);
+  }
+  input:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent);}
+  .hint{font-size:11.5px;color:#4A6682;margin-top:5px;}
+  input[type=file]{
+    width:100%;padding:10px 13px;border:1px solid var(--hairline);
+    border-radius:8px;font-family:'Inter',sans-serif;font-size:13.5px;
+    background:#FCFCFD;color:var(--ink-soft);
+  }
+  input[type=file]::file-selector-button{
+    font-family:'Inter',sans-serif;font-weight:600;font-size:12.5px;
+    padding:7px 12px;margin-right:10px;border:none;border-radius:6px;
+    background:var(--accent-soft);color:#1B3B6B;cursor:pointer;
+  }
+
+  .accord-group{display:flex;gap:10px;margin-top:8px;}
+  .accord-opt{
+    flex:1;border:1.5px solid var(--hairline);border-radius:10px;
+    padding:14px 12px;cursor:pointer;text-align:center;
+    transition:border-color .15s, background .15s, transform .1s;
+    background:#FCFDFB;
+  }
+  .accord-opt:hover{transform:translateY(-1px);}
+  .accord-opt input{position:absolute;opacity:0;pointer-events:none;}
+  .accord-opt .label{font-weight:600;font-size:14px;}
+  .accord-opt .sub{font-size:11px;color:var(--ink-soft);margin-top:2px;}
+  .accord-opt.oui.checked{border-color:var(--green);background:var(--green-soft);}
+  .accord-opt.non.checked{border-color:var(--red);background:var(--red-soft);}
+
+  .sig-wrap{margin-top:8px;}
+  .sig-box{
+    position:relative;border:1.5px dashed var(--hairline);border-radius:10px;
+    background:#FCFCFD;overflow:hidden;
+  }
+  canvas{display:block;width:100%;height:160px;touch-action:none;cursor:crosshair;}
+  .sig-baseline{
+    position:absolute;left:16px;right:16px;bottom:34px;
+    border-bottom:1px dotted #B7BDC9;pointer-events:none;
+  }
+  .sig-caption{
+    text-align:center;font-family:'Fraunces',serif;font-style:italic;
+    font-size:12px;color:#4A6682;padding:6px 0 10px;
+  }
+  .sig-controls{display:flex;justify-content:flex-end;padding:0 0 10px;}
+  .btn-ghost{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;
+    background:none;border:none;color:var(--ink-soft);cursor:pointer;
+    text-decoration:underline;padding:4px;
+  }
+
+  .submit-row{margin-top:28px;}
+  .btn-primary{
+    width:100%;padding:14px;border:none;border-radius:9px;
+    background:linear-gradient(135deg, var(--sn-green) 0%, #046b34 100%);
+    color:#FFFFFF;font-family:'Inter',sans-serif;
+    font-weight:600;font-size:14.5px;cursor:pointer;
+    transition:transform .12s, box-shadow .12s;
+    box-shadow:0 3px 10px rgba(0,133,63,0.28);
+  }
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(0,133,63,0.35);}
+  .btn-primary:disabled{background:#B9BFCD;cursor:not-allowed;box-shadow:none;transform:none;}
+  .error-msg{
+    color:var(--red);font-size:12.5px;margin-top:10px;display:none;
+  }
+
+  .confirm{
+    text-align:center;padding:20px 0 4px;
+  }
+  .confirm .stamp{
+    width:64px;height:64px;border-radius:50%;
+    border:2.5px solid var(--green);color:var(--green);
+    display:flex;align-items:center;justify-content:center;
+    margin:0 auto 18px;font-size:28px;
+  }
+  .confirm h2{font-family:'Fraunces',serif;font-size:20px;margin:0 0 8px;}
+  .confirm p{color:var(--ink-soft);font-size:13.5px;line-height:1.6;margin:0 0 22px;}
+  .receipt{
+    text-align:left;background:#FCFCFD;border:1px solid var(--hairline);
+    border-radius:10px;padding:16px 18px;font-size:13px;margin-bottom:22px;
+  }
+  .receipt div{display:flex;justify-content:space-between;padding:5px 0;
+    border-bottom:1px solid #EFEFF3;}
+  .receipt div:last-child{border-bottom:none;}
+  .receipt .k{color:var(--ink-soft);}
+  .receipt .v{font-weight:600;font-family:'IBM Plex Mono',monospace;font-size:12.5px;}
+
+  .gate{max-width:340px;margin:60px auto 0;text-align:center;}
+  .gate .card{padding:28px;}
+  .gate p{font-size:13px;color:var(--ink-soft);margin-top:6px;}
+  .stat-row{display:flex;gap:12px;margin-bottom:16px;}
+  .stat{
+    flex:1;background:var(--card);border:1px solid var(--hairline);
+    border-radius:12px;padding:16px 18px;
+  }
+  .stat .n{font-family:'Fraunces',serif;font-size:26px;font-weight:600;}
+  .stat .l{font-size:11px;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.06em;margin-top:2px;}
+  .toolbar{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+  .search{
+    flex:1;padding:10px 13px;border:1px solid var(--hairline);border-radius:8px;
+    font-family:'Inter',sans-serif;font-size:13.5px;background:var(--card);
+  }
+  .btn-export{
+    font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:.03em;
+    background:var(--accent-soft);color:#1B3B6B;border:1px solid var(--accent);
+    border-radius:8px;padding:0 16px;cursor:pointer;font-weight:600;
+  }
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  thead th{
+    text-align:left;font-family:'IBM Plex Mono',monospace;font-size:10.5px;
+    text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);
+    padding:8px 10px;border-bottom:1.5px solid var(--ink);
+  }
+  thead th.sortable{cursor:pointer;user-select:none;}
+  thead th.sortable:hover{color:var(--ink);}
+  thead th.sortable .arrow{margin-left:3px;}
+  tbody td{padding:10px;border-bottom:1px solid #EFEFF3;vertical-align:middle;}
+  tbody tr:hover{background:#FBFBFD;}
+  .pill{
+    display:inline-block;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;
+  }
+  .pill.oui{background:var(--green-soft);color:var(--green);}
+  .pill.non{background:var(--red-soft);color:var(--red);}
+  .mono{font-family:'IBM Plex Mono',monospace;font-size:12px;}
+  .empty{text-align:center;padding:50px 10px;color:var(--ink-soft);font-size:13.5px;}
+  .sig-thumb{
+    width:56px;height:26px;background:#fff;border:1px solid var(--hairline);
+    border-radius:4px;cursor:pointer;object-fit:contain;
+  }
+  .btn-row-print{
+    font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.03em;
+    background:none;border:1px solid var(--hairline);color:var(--ink-soft);
+    border-radius:6px;padding:4px 8px;cursor:pointer;white-space:nowrap;
+  }
+  .btn-row-print:hover{border-color:var(--ink);color:var(--ink);}
+
+  #print-area{display:none;}
+  .fiche{
+    font-family:'Inter',sans-serif;color:#16233F;padding:30px;
+  }
+  .fiche .fiche-head{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    border-bottom:2px solid #16233F;padding-bottom:14px;margin-bottom:22px;
+  }
+  .fiche .fiche-eyebrow{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;
+    letter-spacing:.1em;color:#1F4E8C;font-weight:700;
+  }
+  .fiche .fiche-title{
+    font-family:'Fraunces',serif;font-size:18px;font-weight:600;margin:2px 0 0;
+  }
+  .fiche table{width:100%;border-collapse:collapse;font-size:14px;}
+  .fiche table td{padding:9px 0;border-bottom:1px solid #EFEFF3;vertical-align:top;}
+  .fiche table td.k{color:#4A5670;width:180px;}
+  .fiche table td.v{font-weight:600;}
+  .fiche .fiche-sig-label{font-size:11px;color:#8A90A0;margin:22px 0 6px;}
+  .fiche .fiche-sig-img{
+    max-width:280px;border:1px solid #D8DCE4;border-radius:8px;
+    padding:10px;background:#fff;display:block;
+  }
+  .fiche .fiche-foot{
+    margin-top:30px;font-size:10.5px;color:#8A90A0;
+    border-top:1px dotted #B7BDC9;padding-top:10px;
+  }
+
+  /* ---- CARTE DE MEMBRE (format carte bancaire ~85.6 x 54 mm) ---- */
+  .carte-page{
+    display:flex;align-items:center;justify-content:center;gap:14mm;
+    min-height:100vh;flex-wrap:wrap;padding:10mm;
+  }
+  .carte-membre{
+    width:85.6mm;height:54mm;border-radius:3.5mm;
+    position:relative;overflow:hidden;
+    font-family:'Inter',sans-serif;color:#fff;
+    background:linear-gradient(135deg, #00622E 0%, #00853F 55%, #046b34 100%);
+    box-shadow:0 2px 10px rgba(0,0,0,0.25);
+    padding:4mm 4.5mm;box-sizing:border-box;
+  }
+  .carte-membre.verso{
+    background:#F6F8F5;color:#1B2B22;
+    display:flex;flex-direction:column;justify-content:space-between;
+  }
+  .carte-membre .cm-flagstripe{
+    position:absolute;top:0;left:0;right:0;height:2.6mm;
+    background:linear-gradient(90deg, #00853F 0 33.33%, #FDEF42 33.33% 66.66%, #E31B23 66.66% 100%);
+  }
+  .carte-membre .cm-head{
+    display:flex;justify-content:space-between;align-items:flex-start;
+    margin-top:2mm;
+  }
+  .carte-membre .cm-republique{
+    font-size:6.2pt;letter-spacing:.06em;text-transform:uppercase;opacity:.85;
+  }
+  .carte-membre .cm-parti{
+    font-family:'Fraunces',serif;font-weight:600;font-size:9pt;margin-top:1mm;line-height:1.15;
+  }
+  .carte-membre .cm-badge{
+    font-family:'IBM Plex Mono',monospace;font-size:6pt;letter-spacing:.08em;
+    background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.5);
+    border-radius:3px;padding:2px 5px;white-space:nowrap;
+  }
+  .carte-membre .cm-title{
+    font-family:'IBM Plex Mono',monospace;font-size:7pt;letter-spacing:.12em;
+    text-transform:uppercase;margin-top:3mm;opacity:.85;
+  }
+  .carte-membre .cm-nom{
+    font-family:'Fraunces',serif;font-weight:600;font-size:13pt;margin-top:0.5mm;line-height:1.15;
+  }
+  .carte-membre .cm-cellule{
+    font-size:7.5pt;margin-top:1mm;opacity:.95;
+  }
+  .carte-membre .cm-foot{
+    position:absolute;left:4.5mm;right:4.5mm;bottom:3mm;
+    display:flex;justify-content:space-between;align-items:flex-end;
+    font-family:'IBM Plex Mono',monospace;font-size:6.4pt;letter-spacing:.02em;
+  }
+  .carte-membre .cm-pill{
+    display:inline-block;padding:1.5px 6px;border-radius:8px;font-weight:700;font-size:6.2pt;
+  }
+  .carte-membre .cm-pill.oui{background:#E3F3EA;color:#00622E;}
+  .carte-membre .cm-pill.non{background:#FBE7E7;color:#A23E34;}
+
+  .carte-membre.verso .cm-v-head{
+    font-family:'IBM Plex Mono',monospace;font-size:6.5pt;letter-spacing:.05em;
+    color:#4A5C4F;text-transform:uppercase;margin-top:2mm;
+  }
+  .carte-membre.verso .cm-v-row{
+    display:flex;justify-content:space-between;font-size:7.2pt;
+    padding:1.6mm 0;border-bottom:0.4pt dotted #B7BDC9;
+  }
+  .carte-membre.verso .cm-v-row .k{color:#4A5C4F;}
+  .carte-membre.verso .cm-v-row .v{font-weight:600;font-family:'IBM Plex Mono',monospace;}
+  .carte-membre.verso .cm-sig-label{font-size:6pt;color:#8A90A0;margin-top:2mm;}
+  .carte-membre.verso .cm-sig-img{
+    height:9mm;max-width:32mm;object-fit:contain;
+    border:0.4pt solid #D8DCE4;border-radius:2px;background:#fff;padding:1mm;
+  }
+  .carte-membre.verso .cm-v-foot{
+    font-size:5.6pt;color:#9AA1B0;line-height:1.35;
+  }
+
+  @media print{
+    body *{visibility:hidden;}
+    #print-area, #print-area *{visibility:visible;}
+    #print-area{display:block;position:absolute;left:0;top:0;width:100%;margin:0;padding:0;}
+    .fiche{page-break-after:always;}
+    .fiche:last-child{page-break-after:auto;}
+    .carte-page{page-break-after:always;}
+    .carte-page:last-child{page-break-after:auto;}
+  }
+  .lightbox{
+    position:fixed;inset:0;background:rgba(22,35,63,.55);
+    display:none;align-items:center;justify-content:center;z-index:50;padding:20px;
+  }
+  .lightbox.show{display:flex;}
+  .lightbox img{max-width:400px;width:100%;background:#fff;border-radius:10px;padding:16px;}
+  .refresh-note{font-size:11.5px;color:#4A6682;margin-bottom:12px;}
+  .contact-note{
+    font-size:12px;color:var(--ink-soft);background:var(--accent-soft);
+    border:1px solid var(--accent);border-radius:10px;padding:10px 14px;margin-bottom:16px;
+  }
+  .contact-note b{color:var(--ink);}
+  #mg-list th,#mg-list td{display:table-cell !important;}
+  @media (max-width:520px){
+    .wrap{padding:20px 14px 60px;}
+    .card{padding:22px 18px;}
+    thead th:nth-child(5),tbody td:nth-child(5){display:none;}
+    .masthead img{height:44px !important;}
+    .masthead .eyebrow{font-size:11px !important;}
+  }
+  .letterhead .lh-parti,.masthead .eyebrow{color:#005A28 !important;}
+  .letterhead .lh-cellule{color:#A5121A !important;}
+</style>
+</head>
+<body>
+<div class="flag-bar"></div>
+<div class="wrap">
+
+  <div class="letterhead">
+    <div class="lh-line lh-republique">République du Sénégal</div>
+    <div class="lh-line lh-parti">AND DOLEL KAW</div>
+    <div class="lh-line lh-president">Leader : MAMADOU DIOUF dit KAW</div>
+    <div class="lh-line lh-cellule">Koungheul</div>
+    <div class="lh-line">Plate-forme gérée par les responsables de comité</div>
+    
+  </div>
+
+  <div class="masthead">
+    <div style="display:flex;align-items:center;justify-content:center;gap:14px;flex:1;">
+      <div style="text-align:center;">
+        <p class="eyebrow">AND DOLEL KAW · Koungheul</p>
+        <h1 style="display:inline;">Plate-forme Digitale d'adhésion</h1>
+      </div>
+      
+    </div>
+    <svg width="52" height="35" viewBox="0 0 90 60" style="flex-shrink:0;border-radius:4px;box-shadow:0 1px 4px rgba(0,0,0,0.18);">
+      <rect width="30" height="60" x="0" fill="#00853F"/>
+      <rect width="30" height="60" x="30" fill="#FDEF42"/>
+      <rect width="30" height="60" x="60" fill="#E31B23"/>
+      <polygon points="45,20 47.35,27.05 54.77,27.05 48.71,31.45 51.06,38.5 45,34.1 38.94,38.5 41.29,31.45 35.23,27.05 42.65,27.05" fill="#00853F"/>
+    </svg>
+  </div>
+
+  <div class="tabs" id="tabs-bar" style="display:none;">
+    <div class="tab active" data-tab="form">Formulaire</div>
+    <div class="tab" data-tab="dash">Espace responsable</div>
+  </div>
+
+  <!-- FORM PANEL -->
+  <div class="panel active" id="panel-form">
+    <div id="form-card" class="card">
+      <p class="doc-title">Plate-forme Digitale d'adhésion</p>
+      <p class="doc-sub">Merci de renseigner vos informations pour confirmer votre adhésion à AND DOLEL KAW, le mouvement de Mamadou Diouf dit Kaw.</p>
+
+      <label for="comite">Comité</label>
+      <select id="comite" class="search" style="width:100%;flex:none;"><option value="">Chargement des comités…</option></select>
+      <div class="hint">Choisissez votre comité (déjà choisi si vous avez reçu le lien de votre responsable).</div>
+
+      <label for="nom">Nom complet</label>
+      <input type="text" id="nom" placeholder="Prénom et nom" autocomplete="name" style="text-transform:uppercase;" />
+
+      <label for="cni">Numéro de carte d'identité (CNI)</label>
+      <input type="text" id="cni" placeholder="Numéro de la carte d'identité" />
+      <div class="hint">Une seule confirmation est conservée par numéro de CNI ; une nouvelle soumission remplace la précédente.</div>
+      <p class="hint" id="dup-warning" style="display:none;color:#1B3B6B;background:var(--accent-soft);border:1px solid var(--accent);border-radius:8px;padding:8px 10px;margin-top:8px;"></p>
+
+      <label for="carte-electeur">Numéro de carte d'électeur <span style="font-weight:400;color:#4A6682;">(optionnel)</span></label>
+      <input type="text" id="carte-electeur" placeholder="Numéro de la carte d'électeur (facultatif)" />
+
+      <label for="centre-vote">Centre de vote <span style="font-weight:400;color:#4A6682;">(optionnel)</span></label>
+      <input type="text" id="centre-vote" placeholder="Ex : École primaire de Koungheul" />
+
+      <label for="bureau-vote">Bureau de vote <span style="font-weight:400;color:#4A6682;">(optionnel)</span></label>
+      <input type="text" id="bureau-vote" placeholder="Ex : Bureau n° 3" />
+
+      <label>Photo <span style="font-weight:400;color:#4A6682;">(optionnel)</span></label>
+      <div style="display:flex;justify-content:center;margin-top:8px;">
+        <div id="photo-placeholder" style="width:150px;height:200px;border:1.5px dashed var(--hairline);border-radius:10px;background:#FCFCFD;color:#4A6682;font-size:12.5px;align-items:center;justify-content:center;text-align:center;padding:10px;display:flex;">Aucune photo</div>
+        <video id="photo-video" playsinline muted style="display:none;width:100%;max-width:260px;border-radius:10px;transform:scaleX(-1);background:#000;"></video>
+        <img id="photo-preview" alt="Photo du membre" style="display:none;width:150px;height:200px;object-fit:cover;border-radius:10px;border:1px solid var(--hairline);" />
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-top:12px;">
+        <button type="button" class="btn-export" id="photo-start" style="padding:9px 14px;">Prendre une photo</button>
+        <button type="button" class="btn-export" id="photo-snap" style="display:none;padding:9px 14px;background:var(--accent);color:#fff;">Capturer</button>
+        <button type="button" class="btn-export" id="photo-pick" style="padding:9px 14px;background:var(--card);color:var(--ink-soft);border-color:var(--hairline);">Choisir une image</button>
+        <button type="button" class="btn-ghost" id="photo-clear" style="display:none;">Supprimer</button>
+      </div>
+      <input type="file" id="photo-cam" accept="image/*" capture="user" style="display:none;" />
+      <input type="file" id="photo-file" accept="image/*" style="display:none;" />
+      <div class="hint" style="text-align:center;">Visage de face, bien éclairé. La photo apparaît sur la carte de membre.</div>
+
+      <label for="quartier">Quartier / Adresse</label>
+      <input type="text" id="quartier" placeholder="Ex : Quartier, ville" />
+
+      <label for="tel">Téléphone</label>
+      <input type="tel" id="tel" placeholder="Ex : 77 123 45 67" />
+
+      <label>Adhésion au mouvement</label>
+      <div class="accord-group">
+        <label class="accord-opt oui" id="opt-oui">
+          <input type="radio" name="accord" value="Oui" />
+          <div class="label">Oui, j'adhère</div>
+          <div class="sub">Je rejoins le mouvement</div>
+        </label>
+      </div>
+
+      <label>Signature électronique</label>
+      <div class="sig-wrap">
+        <div class="sig-box">
+          <canvas id="sigpad"></canvas>
+          <div class="sig-baseline"></div>
+        </div>
+        <p class="sig-caption">Signez ci-dessus avec le doigt ou la souris</p>
+        <div class="sig-controls" style="justify-content:space-between;">
+          <button type="button" id="open-workspace-btn" style="background:none;border:none;color:#B7BDC9;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.04em;cursor:pointer;padding:4px;opacity:.45;transition:opacity .15s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.45">Espace responsable</button>
+          <button type="button" class="btn-ghost" id="clear-sig">Effacer la signature</button>
+        </div>
+      </div>
+
+      <div class="submit-row">
+        <button class="btn-primary" id="submit-btn">Confirmer et envoyer</button>
+        <p class="error-msg" id="error-msg"></p>
+      </div>
+
+    </div>
+
+    <!-- CONFIRMATION (hidden until submit) -->
+    <div class="card confirm" id="confirm-card" style="display:none;">
+      <div class="stamp">✓</div>
+      <h2>Confirmation enregistrée</h2>
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin:-4px 0 10px;">AND DOLEL KAW · <span id="rc-comite"></span></p>
+      <p>Votre réponse a bien été transmise au responsable du comité.</p>
+      <div class="receipt" id="receipt"></div>
+      <button class="btn-primary" id="my-card-btn" style="margin-bottom:10px;">Imprimer ma carte de membre</button>
+      <button class="btn-primary" id="my-card-png" style="margin-bottom:10px;background:var(--accent-soft);color:#1B3B6B;">Télécharger ma carte (image PNG)</button>
+      <button class="btn-primary" id="new-entry-btn" style="background:var(--accent-soft);color:#1B3B6B;">Nouvelle confirmation</button>
+    </div>
+  </div>
+
+  <!-- DASHBOARD PANEL -->
+  <div class="panel" id="panel-dash">
+
+    <div class="gate" id="dash-gate">
+      <div class="card">
+        <p class="doc-title" style="margin-bottom:2px;">Espace responsable</p>
+        <p>Entrez le code d'accès de votre comité (ou le code de coordination générale).</p>
+        <input type="password" class="search" id="pin-input" placeholder="Code d'accès" style="margin-top:16px;text-align:center;letter-spacing:.1em;" />
+        <button class="btn-primary" id="pin-submit" style="margin-top:12px;">Accéder</button>
+        <p class="error-msg" id="pin-error"></p>
+      </div>
+    </div>
+
+    <div id="dash-content" style="display:none;">
+      <div class="contact-note" id="contact-note"></div>
+      <div class="toolbar"><button class="btn-export" id="manage-btn" style="background:var(--accent);color:#fff;border-color:var(--accent);padding:10px 16px;">Gérer les comités</button></div>
+      <div class="card" id="manage-panel" style="display:none;padding:20px;margin-bottom:16px;">
+        <p class="doc-title" id="mg-title" style="font-size:16px;margin-bottom:14px;"></p>
+        <div id="mg-form">
+          <label for="mg-nom" style="margin-top:0;">Nom du comité</label>
+          <input type="text" id="mg-nom" placeholder="Ex : Comité de Koungheul Escale" />
+          <label for="mg-resp">Responsable du comité</label>
+          <input type="text" id="mg-resp" placeholder="Prénom et nom" />
+          <label for="mg-tel">Téléphone du responsable</label>
+          <input type="tel" id="mg-tel" placeholder="Ex : 77 123 45 67" />
+          <label for="mg-code">Code d'accès du responsable</label>
+          <input type="text" id="mg-code" placeholder="Laisser vide pour générer un code" />
+          <div class="hint">Au moins 4 caractères. Le responsable l'utilise pour ouvrir « Espace responsable » et gérer son comité.</div>
+          <div style="display:flex;gap:10px;margin-top:14px;align-items:center;">
+            <button class="btn-primary" id="mg-save" style="flex:1;"></button>
+            <button type="button" class="btn-ghost" id="mg-cancel" style="display:none;">Annuler</button>
+          </div>
+          <p class="error-msg" id="mg-err"></p>
+        </div>
+        <div id="mg-list" style="margin-top:18px;overflow-x:auto;"></div>
+      </div>
+      <div class="stat-row">
+        <div class="stat"><div class="n" id="stat-total">0</div><div class="l">Confirmations</div></div>
+        <div class="stat"><div class="n" id="stat-oui" style="color:var(--green);">0</div><div class="l">Adhésions « Oui »</div></div>
+        <div class="stat"><div class="n" id="stat-non" style="color:var(--red);">0</div><div class="l">Refus « Non »</div></div>
+      </div>
+      <div class="toolbar">
+        <input type="text" class="search" id="search-input" placeholder="Rechercher par nom, CNI, quartier ou centre de vote…" />
+        <select class="search" id="filter-accord" style="max-width:150px;flex:none;">
+          <option value="">Toutes les réponses</option>
+          <option value="Oui">Oui uniquement</option>
+          <option value="Non">Non uniquement</option>
+        </select>
+        <select class="search" id="filter-comite" style="max-width:190px;flex:none;display:none;"><option value="">Tous les comités</option></select>
+        <select class="search" id="filter-section" style="max-width:190px;flex:none;">
+          <option value="">Tous les quartiers</option>
+        </select>
+        <button class="btn-export" id="qr-btn" title="Génère un QR code et un lien à partager pour que les membres adhèrent en ligne" style="background:var(--accent);color:#fff;border-color:var(--accent);">QR code d'adhésion</button>
+        <button class="btn-export" id="print-all-btn" title="Génère une fiche imprimable pour chaque ligne affichée">Fiches à imprimer</button>
+        <button class="btn-export" id="print-cards-btn" title="Génère une carte de membre imprimable pour chaque ligne affichée">Cartes de membre</button>
+        <button class="btn-export" id="png-cards-btn" title="Télécharge une image PNG (recto + verso) pour chaque ligne affichée">Cartes (PNG)</button>
+        <button class="btn-export" id="export-btn">Exporter CSV</button>
+        <button class="btn-export" id="refresh-btn" style="background:var(--card);color:var(--ink-soft);border-color:var(--hairline);">Actualiser</button>
+      </div>
+      <p class="refresh-note">Les signatures ne sont pas incluses dans l'export CSV ; cliquez une vignette pour l'agrandir. « Fiches à imprimer » génère une fiche par membre (respecte les filtres en cours).</p>
+      <div class="card" id="section-stats-card" style="display:none;padding:16px 18px;margin-bottom:16px;">
+        <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);margin:0 0 10px;" id="section-stats-title">Répartition par quartier</p>
+        <div id="section-stats-body"></div>
+      </div>
+      <div class="card" style="padding:0;overflow-x:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th class="sortable" data-sort="nom">Nom</th>
+              <th class="sortable" data-sort="matricule">CNI</th>
+              <th class="sortable" data-sort="comite">Comité</th>
+              <th class="sortable" data-sort="section">Quartier</th>
+              <th>Téléphone</th>
+              <th class="sortable" data-sort="accord">Adhésion</th>
+              <th>Signature</th>
+              <th class="sortable" data-sort="date">Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="table-body"></tbody>
+        </table>
+        <div class="empty" id="empty-state" style="display:none;">Aucune confirmation enregistrée pour le moment.</div>
+      </div>
+      <div class="toolbar" id="pagination-bar" style="margin-top:14px;justify-content:center;align-items:center;gap:14px;">
+        <button class="btn-export" id="page-prev" style="background:var(--card);color:var(--ink-soft);border-color:var(--hairline);">← Précédent</button>
+        <span class="mono" id="page-indicator" style="font-size:12.5px;color:var(--ink-soft);"></span>
+        <button class="btn-export" id="page-next" style="background:var(--card);color:var(--ink-soft);border-color:var(--hairline);">Suivant →</button>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="lightbox" id="lightbox"><img id="lightbox-img" /></div>
+
+<div class="lightbox" id="qr-modal">
+  <div class="card" style="max-width:360px;width:100%;text-align:center;padding:28px 24px;">
+    <p class="doc-title" style="margin-bottom:4px;">QR code d'adhésion</p>
+    <p class="hint" style="margin-bottom:16px;">À afficher, partager ou imprimer pour inviter les membres à adhérer en ligne.</p>
+    <div id="qr-canvas-wrap" style="display:flex;justify-content:center;margin-bottom:16px;"></div>
+    <label style="text-align:left;">Lien du formulaire</label>
+    <input type="text" id="qr-link" readonly style="text-align:center;font-family:'IBM Plex Mono',monospace;font-size:12px;" />
+    <div class="submit-row" style="margin-top:14px;flex-direction:column;gap:8px;">
+      <button class="btn-primary" id="qr-copy-btn" style="width:100%;">Copier le lien</button>
+      <button class="btn-export" id="qr-print-btn" style="width:100%;background:var(--card);color:var(--ink-soft);border-color:var(--hairline);">Imprimer l'affiche</button>
+      <button class="btn-export" id="qr-close-btn" style="width:100%;background:none;border:none;color:var(--ink-soft);">Fermer</button>
+    </div>
+  </div>
+</div>
+
+<div class="lightbox" id="mb-modal">
+  <div class="card" style="max-width:420px;width:100%;max-height:90vh;overflow:auto;padding:24px;">
+    <p class="doc-title" style="margin-bottom:14px;">Modifier l'adhérent</p>
+    <label for="mb-nom" style="margin-top:0;">Nom complet</label><input type="text" id="mb-nom" style="text-transform:uppercase;" />
+    <label for="mb-section">Quartier / Adresse</label><input type="text" id="mb-section" />
+    <label for="mb-tel">Téléphone</label><input type="tel" id="mb-tel" />
+    <label for="mb-carte">Carte d'électeur (optionnel)</label><input type="text" id="mb-carte" />
+    <label for="mb-centre">Centre de vote (optionnel)</label><input type="text" id="mb-centre" />
+    <label for="mb-bureau">Bureau de vote (optionnel)</label><input type="text" id="mb-bureau" />
+    <label for="mb-accord">Adhésion</label>
+    <select id="mb-accord" class="search" style="width:100%;flex:none;"><option value="Oui">Oui</option><option value="Non">Non</option></select>
+    <p class="hint">Le numéro de CNI ne peut pas être modifié.</p>
+    <div style="display:flex;gap:10px;margin-top:14px;">
+      <button class="btn-primary" id="mb-save" style="flex:1;">Enregistrer</button>
+      <button type="button" class="btn-ghost" id="mb-cancel">Annuler</button>
+    </div>
+    <p class="error-msg" id="mb-err"></p>
+  </div>
+</div>
+
+<div id="print-area"></div>
+
+<script>
+/* qrcode-generator (Kazuhiko Arase) — MIT — intégré hors-ligne pour générer le QR code d'adhésion */
+var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],f={},c=function(t,r){o=function(t){for(var r=new Array(t),e=0;e<t;e+=1){r[e]=new Array(t);for(var n=0;n<t;n+=1)r[e][n]=null}return r}(i=4*e+17),l(0,0),l(i-7,0),l(0,i-7),s(),h(),d(t,r),e>=7&&v(t),null==a&&(a=p(e,n,u)),w(a,r)},l=function(t,r){for(var e=-1;e<=7;e+=1)if(!(t+e<=-1||i<=t+e))for(var n=-1;n<=7;n+=1)r+n<=-1||i<=r+n||(o[t+e][r+n]=0<=e&&e<=6&&(0==n||6==n)||0<=n&&n<=6&&(0==e||6==e)||2<=e&&e<=4&&2<=n&&n<=4)},h=function(){for(var t=8;t<i-8;t+=1)null==o[t][6]&&(o[t][6]=t%2==0);for(var r=8;r<i-8;r+=1)null==o[6][r]&&(o[6][r]=r%2==0)},s=function(){for(var t=B.getPatternPosition(e),r=0;r<t.length;r+=1)for(var n=0;n<t.length;n+=1){var i=t[r],a=t[n];if(null==o[i][a])for(var u=-2;u<=2;u+=1)for(var f=-2;f<=2;f+=1)o[i+u][a+f]=-2==u||2==u||-2==f||2==f||0==u&&0==f}},v=function(t){for(var r=B.getBCHTypeNumber(e),n=0;n<18;n+=1){var a=!t&&1==(r>>n&1);o[Math.floor(n/3)][n%3+i-8-3]=a}for(n=0;n<18;n+=1){a=!t&&1==(r>>n&1);o[n%3+i-8-3][Math.floor(n/3)]=a}},d=function(t,r){for(var e=n<<3|r,a=B.getBCHTypeInfo(e),u=0;u<15;u+=1){var f=!t&&1==(a>>u&1);u<6?o[u][8]=f:u<8?o[u+1][8]=f:o[i-15+u][8]=f}for(u=0;u<15;u+=1){f=!t&&1==(a>>u&1);u<8?o[8][i-u-1]=f:u<9?o[8][15-u-1+1]=f:o[8][15-u-1]=f}o[i-8][8]=!t},w=function(t,r){for(var e=-1,n=i-1,a=7,u=0,f=B.getMaskFunction(r),c=i-1;c>0;c-=2)for(6==c&&(c-=1);;){for(var g=0;g<2;g+=1)if(null==o[n][c-g]){var l=!1;u<t.length&&(l=1==(t[u]>>>a&1)),f(n,c-g)&&(l=!l),o[n][c-g]=l,-1==(a-=1)&&(u+=1,a=7)}if((n+=e)<0||i<=n){n-=e,e=-e;break}}},p=function(t,r,e){for(var n=A.getRSBlocks(t,r),o=b(),i=0;i<e.length;i+=1){var a=e[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var u=0;for(i=0;i<n.length;i+=1)u+=n[i].dataCount;if(o.getLengthInBits()>8*u)throw"code length overflow. ("+o.getLengthInBits()+">"+8*u+")";for(o.getLengthInBits()+4<=8*u&&o.put(0,4);o.getLengthInBits()%8!=0;)o.putBit(!1);for(;!(o.getLengthInBits()>=8*u||(o.put(236,8),o.getLengthInBits()>=8*u));)o.put(17,8);return function(t,r){for(var e=0,n=0,o=0,i=new Array(r.length),a=new Array(r.length),u=0;u<r.length;u+=1){var f=r[u].dataCount,c=r[u].totalCount-f;n=Math.max(n,f),o=Math.max(o,c),i[u]=new Array(f);for(var g=0;g<i[u].length;g+=1)i[u][g]=255&t.getBuffer()[g+e];e+=f;var l=B.getErrorCorrectPolynomial(c),h=k(i[u],l.getLength()-1).mod(l);for(a[u]=new Array(l.getLength()-1),g=0;g<a[u].length;g+=1){var s=g+h.getLength()-a[u].length;a[u][g]=s>=0?h.getAt(s):0}}var v=0;for(g=0;g<r.length;g+=1)v+=r[g].totalCount;var d=new Array(v),w=0;for(g=0;g<n;g+=1)for(u=0;u<r.length;u+=1)g<i[u].length&&(d[w]=i[u][g],w+=1);for(g=0;g<o;g+=1)for(u=0;u<r.length;u+=1)g<a[u].length&&(d[w]=a[u][g],w+=1);return d}(o,n)};f.addData=function(t,r){var e=null;switch(r=r||"Byte"){case"Numeric":e=M(t);break;case"Alphanumeric":e=x(t);break;case"Byte":e=m(t);break;case"Kanji":e=L(t);break;default:throw"mode:"+r}u.push(e),a=null},f.isDark=function(t,r){if(t<0||i<=t||r<0||i<=r)throw t+","+r;return o[t][r]},f.getModuleCount=function(){return i},f.make=function(){if(e<1){for(var t=1;t<40;t++){for(var r=A.getRSBlocks(t,n),o=b(),i=0;i<u.length;i++){var a=u[i];o.put(a.getMode(),4),o.put(a.getLength(),B.getLengthInBits(a.getMode(),t)),a.write(o)}var g=0;for(i=0;i<r.length;i++)g+=r[i].dataCount;if(o.getLengthInBits()<=8*g)break}e=t}c(!1,function(){for(var t=0,r=0,e=0;e<8;e+=1){c(!0,e);var n=B.getLostPoint(f);(0==e||t>n)&&(t=n,r=e)}return r}())},f.createTableTag=function(t,r){t=t||2;var e="";e+='<table style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: "+(r=void 0===r?4*t:r)+"px;",e+='">',e+="<tbody>";for(var n=0;n<f.getModuleCount();n+=1){e+="<tr>";for(var o=0;o<f.getModuleCount();o+=1)e+='<td style="',e+=" border-width: 0px; border-style: none;",e+=" border-collapse: collapse;",e+=" padding: 0px; margin: 0px;",e+=" width: "+t+"px;",e+=" height: "+t+"px;",e+=" background-color: ",e+=f.isDark(n,o)?"#000000":"#ffffff",e+=";",e+='"/>';e+="</tr>"}return e+="</tbody>",e+="</table>"},f.createSvgTag=function(t,r,e,n){var o={};"object"==typeof arguments[0]&&(t=(o=arguments[0]).cellSize,r=o.margin,e=o.alt,n=o.title),t=t||2,r=void 0===r?4*t:r,(e="string"==typeof e?{text:e}:e||{}).text=e.text||null,e.id=e.text?e.id||"qrcode-description":null,(n="string"==typeof n?{text:n}:n||{}).text=n.text||null,n.id=n.text?n.id||"qrcode-title":null;var i,a,u,c,g=f.getModuleCount()*t+2*r,l="";for(c="l"+t+",0 0,"+t+" -"+t+",0 0,-"+t+"z ",l+='<svg version="1.1" xmlns="http://www.w3.org/2000/svg"',l+=o.scalable?"":' width="'+g+'px" height="'+g+'px"',l+=' viewBox="0 0 '+g+" "+g+'" ',l+=' preserveAspectRatio="xMinYMin meet"',l+=n.text||e.text?' role="img" aria-labelledby="'+y([n.id,e.id].join(" ").trim())+'"':"",l+=">",l+=n.text?'<title id="'+y(n.id)+'">'+y(n.text)+"</title>":"",l+=e.text?'<description id="'+y(e.id)+'">'+y(e.text)+"</description>":"",l+='<rect width="100%" height="100%" fill="white" cx="0" cy="0"/>',l+='<path d="',a=0;a<f.getModuleCount();a+=1)for(u=a*t+r,i=0;i<f.getModuleCount();i+=1)f.isDark(a,i)&&(l+="M"+(i*t+r)+","+u+c);return l+='" stroke="transparent" fill="black"/>',l+="</svg>"},f.createDataURL=function(t,r){t=t||2,r=void 0===r?4*t:r;var e=f.getModuleCount()*t+2*r,n=r,o=e-r;return I(e,e,function(r,e){if(n<=r&&r<o&&n<=e&&e<o){var i=Math.floor((r-n)/t),a=Math.floor((e-n)/t);return f.isDark(a,i)?0:1}return 1})},f.createImgTag=function(t,r,e){t=t||2,r=void 0===r?4*t:r;var n=f.getModuleCount()*t+2*r,o="";return o+="<img",o+=' src="',o+=f.createDataURL(t,r),o+='"',o+=' width="',o+=n,o+='"',o+=' height="',o+=n,o+='"',e&&(o+=' alt="',o+=y(e),o+='"'),o+="/>"};var y=function(t){for(var r="",e=0;e<t.length;e+=1){var n=t.charAt(e);switch(n){case"<":r+="&lt;";break;case">":r+="&gt;";break;case"&":r+="&amp;";break;case'"':r+="&quot;";break;default:r+=n}}return r};return f.createASCII=function(t,r){if((t=t||1)<2)return function(t){t=void 0===t?2:t;var r,e,n,o,i,a=1*f.getModuleCount()+2*t,u=t,c=a-t,g={"██":"█","█ ":"▀"," █":"▄","  ":" "},l={"██":"▀","█ ":"▀"," █":" ","  ":" "},h="";for(r=0;r<a;r+=2){for(n=Math.floor((r-u)/1),o=Math.floor((r+1-u)/1),e=0;e<a;e+=1)i="█",u<=e&&e<c&&u<=r&&r<c&&f.isDark(n,Math.floor((e-u)/1))&&(i=" "),u<=e&&e<c&&u<=r+1&&r+1<c&&f.isDark(o,Math.floor((e-u)/1))?i+=" ":i+="█",h+=t<1&&r+1>=c?l[i]:g[i];h+="\n"}return a%2&&t>0?h.substring(0,h.length-a-1)+Array(a+1).join("▀"):h.substring(0,h.length-1)}(r);t-=1,r=void 0===r?2*t:r;var e,n,o,i,a=f.getModuleCount()*t+2*r,u=r,c=a-r,g=Array(t+1).join("██"),l=Array(t+1).join("  "),h="",s="";for(e=0;e<a;e+=1){for(o=Math.floor((e-u)/t),s="",n=0;n<a;n+=1)i=1,u<=n&&n<c&&u<=e&&e<c&&f.isDark(o,Math.floor((n-u)/t))&&(i=0),s+=i?g:l;for(o=0;o<t;o+=1)h+=s+"\n"}return h.substring(0,h.length-1)},f.renderTo2dContext=function(t,r){r=r||2;for(var e=f.getModuleCount(),n=0;n<e;n++)for(var o=0;o<e;o++)t.fillStyle=f.isDark(n,o)?"black":"white",t.fillRect(o*r,n*r,r,r)},f};t.stringToBytes=(t.stringToBytesFuncs={default:function(t){for(var r=[],e=0;e<t.length;e+=1){var n=t.charCodeAt(e);r.push(255&n)}return r}}).default,t.createStringToBytes=function(t,r){var e=function(){for(var e=S(t),n=function(){var t=e.read();if(-1==t)throw"eof";return t},o=0,i={};;){var a=e.read();if(-1==a)break;var u=n(),f=n()<<8|n();i[String.fromCharCode(a<<8|u)]=f,o+=1}if(o!=r)throw o+" != "+r;return i}(),n="?".charCodeAt(0);return function(t){for(var r=[],o=0;o<t.length;o+=1){var i=t.charCodeAt(o);if(i<128)r.push(i);else{var a=e[t.charAt(o)];"number"==typeof a?(255&a)==a?r.push(a):(r.push(a>>>8),r.push(255&a)):r.push(n)}}return r}};var r,e,n,o,i,a=1,u=2,f=4,c=8,g={L:1,M:0,Q:3,H:2},l=0,h=1,s=2,v=3,d=4,w=5,p=6,y=7,B=(r=[[],[6,18],[6,22],[6,26],[6,30],[6,34],[6,22,38],[6,24,42],[6,26,46],[6,28,50],[6,30,54],[6,32,58],[6,34,62],[6,26,46,66],[6,26,48,70],[6,26,50,74],[6,30,54,78],[6,30,56,82],[6,30,58,86],[6,34,62,90],[6,28,50,72,94],[6,26,50,74,98],[6,30,54,78,102],[6,28,54,80,106],[6,32,58,84,110],[6,30,58,86,114],[6,34,62,90,118],[6,26,50,74,98,122],[6,30,54,78,102,126],[6,26,52,78,104,130],[6,30,56,82,108,134],[6,34,60,86,112,138],[6,30,58,86,114,142],[6,34,62,90,118,146],[6,30,54,78,102,126,150],[6,24,50,76,102,128,154],[6,28,54,80,106,132,158],[6,32,58,84,110,136,162],[6,26,54,82,110,138,166],[6,30,58,86,114,142,170]],e=1335,n=7973,i=function(t){for(var r=0;0!=t;)r+=1,t>>>=1;return r},(o={}).getBCHTypeInfo=function(t){for(var r=t<<10;i(r)-i(e)>=0;)r^=e<<i(r)-i(e);return 21522^(t<<10|r)},o.getBCHTypeNumber=function(t){for(var r=t<<12;i(r)-i(n)>=0;)r^=n<<i(r)-i(n);return t<<12|r},o.getPatternPosition=function(t){return r[t-1]},o.getMaskFunction=function(t){switch(t){case l:return function(t,r){return(t+r)%2==0};case h:return function(t,r){return t%2==0};case s:return function(t,r){return r%3==0};case v:return function(t,r){return(t+r)%3==0};case d:return function(t,r){return(Math.floor(t/2)+Math.floor(r/3))%2==0};case w:return function(t,r){return t*r%2+t*r%3==0};case p:return function(t,r){return(t*r%2+t*r%3)%2==0};case y:return function(t,r){return(t*r%3+(t+r)%2)%2==0};default:throw"bad maskPattern:"+t}},o.getErrorCorrectPolynomial=function(t){for(var r=k([1],0),e=0;e<t;e+=1)r=r.multiply(k([1,C.gexp(e)],0));return r},o.getLengthInBits=function(t,r){if(1<=r&&r<10)switch(t){case a:return 10;case u:return 9;case f:case c:return 8;default:throw"mode:"+t}else if(r<27)switch(t){case a:return 12;case u:return 11;case f:return 16;case c:return 10;default:throw"mode:"+t}else{if(!(r<41))throw"type:"+r;switch(t){case a:return 14;case u:return 13;case f:return 16;case c:return 12;default:throw"mode:"+t}}},o.getLostPoint=function(t){for(var r=t.getModuleCount(),e=0,n=0;n<r;n+=1)for(var o=0;o<r;o+=1){for(var i=0,a=t.isDark(n,o),u=-1;u<=1;u+=1)if(!(n+u<0||r<=n+u))for(var f=-1;f<=1;f+=1)o+f<0||r<=o+f||0==u&&0==f||a==t.isDark(n+u,o+f)&&(i+=1);i>5&&(e+=3+i-5)}for(n=0;n<r-1;n+=1)for(o=0;o<r-1;o+=1){var c=0;t.isDark(n,o)&&(c+=1),t.isDark(n+1,o)&&(c+=1),t.isDark(n,o+1)&&(c+=1),t.isDark(n+1,o+1)&&(c+=1),0!=c&&4!=c||(e+=3)}for(n=0;n<r;n+=1)for(o=0;o<r-6;o+=1)t.isDark(n,o)&&!t.isDark(n,o+1)&&t.isDark(n,o+2)&&t.isDark(n,o+3)&&t.isDark(n,o+4)&&!t.isDark(n,o+5)&&t.isDark(n,o+6)&&(e+=40);for(o=0;o<r;o+=1)for(n=0;n<r-6;n+=1)t.isDark(n,o)&&!t.isDark(n+1,o)&&t.isDark(n+2,o)&&t.isDark(n+3,o)&&t.isDark(n+4,o)&&!t.isDark(n+5,o)&&t.isDark(n+6,o)&&(e+=40);var g=0;for(o=0;o<r;o+=1)for(n=0;n<r;n+=1)t.isDark(n,o)&&(g+=1);return e+=Math.abs(100*g/r/r-50)/5*10},o),C=function(){for(var t=new Array(256),r=new Array(256),e=0;e<8;e+=1)t[e]=1<<e;for(e=8;e<256;e+=1)t[e]=t[e-4]^t[e-5]^t[e-6]^t[e-8];for(e=0;e<255;e+=1)r[t[e]]=e;var n={glog:function(t){if(t<1)throw"glog("+t+")";return r[t]},gexp:function(r){for(;r<0;)r+=255;for(;r>=256;)r-=255;return t[r]}};return n}();function k(t,r){if(void 0===t.length)throw t.length+"/"+r;var e=function(){for(var e=0;e<t.length&&0==t[e];)e+=1;for(var n=new Array(t.length-e+r),o=0;o<t.length-e;o+=1)n[o]=t[o+e];return n}(),n={getAt:function(t){return e[t]},getLength:function(){return e.length},multiply:function(t){for(var r=new Array(n.getLength()+t.getLength()-1),e=0;e<n.getLength();e+=1)for(var o=0;o<t.getLength();o+=1)r[e+o]^=C.gexp(C.glog(n.getAt(e))+C.glog(t.getAt(o)));return k(r,0)},mod:function(t){if(n.getLength()-t.getLength()<0)return n;for(var r=C.glog(n.getAt(0))-C.glog(t.getAt(0)),e=new Array(n.getLength()),o=0;o<n.getLength();o+=1)e[o]=n.getAt(o);for(o=0;o<t.getLength();o+=1)e[o]^=C.gexp(C.glog(t.getAt(o))+r);return k(e,0).mod(t)}};return n}var A=function(){var t=[[1,26,19],[1,26,16],[1,26,13],[1,26,9],[1,44,34],[1,44,28],[1,44,22],[1,44,16],[1,70,55],[1,70,44],[2,35,17],[2,35,13],[1,100,80],[2,50,32],[2,50,24],[4,25,9],[1,134,108],[2,67,43],[2,33,15,2,34,16],[2,33,11,2,34,12],[2,86,68],[4,43,27],[4,43,19],[4,43,15],[2,98,78],[4,49,31],[2,32,14,4,33,15],[4,39,13,1,40,14],[2,121,97],[2,60,38,2,61,39],[4,40,18,2,41,19],[4,40,14,2,41,15],[2,146,116],[3,58,36,2,59,37],[4,36,16,4,37,17],[4,36,12,4,37,13],[2,86,68,2,87,69],[4,69,43,1,70,44],[6,43,19,2,44,20],[6,43,15,2,44,16],[4,101,81],[1,80,50,4,81,51],[4,50,22,4,51,23],[3,36,12,8,37,13],[2,116,92,2,117,93],[6,58,36,2,59,37],[4,46,20,6,47,21],[7,42,14,4,43,15],[4,133,107],[8,59,37,1,60,38],[8,44,20,4,45,21],[12,33,11,4,34,12],[3,145,115,1,146,116],[4,64,40,5,65,41],[11,36,16,5,37,17],[11,36,12,5,37,13],[5,109,87,1,110,88],[5,65,41,5,66,42],[5,54,24,7,55,25],[11,36,12,7,37,13],[5,122,98,1,123,99],[7,73,45,3,74,46],[15,43,19,2,44,20],[3,45,15,13,46,16],[1,135,107,5,136,108],[10,74,46,1,75,47],[1,50,22,15,51,23],[2,42,14,17,43,15],[5,150,120,1,151,121],[9,69,43,4,70,44],[17,50,22,1,51,23],[2,42,14,19,43,15],[3,141,113,4,142,114],[3,70,44,11,71,45],[17,47,21,4,48,22],[9,39,13,16,40,14],[3,135,107,5,136,108],[3,67,41,13,68,42],[15,54,24,5,55,25],[15,43,15,10,44,16],[4,144,116,4,145,117],[17,68,42],[17,50,22,6,51,23],[19,46,16,6,47,17],[2,139,111,7,140,112],[17,74,46],[7,54,24,16,55,25],[34,37,13],[4,151,121,5,152,122],[4,75,47,14,76,48],[11,54,24,14,55,25],[16,45,15,14,46,16],[6,147,117,4,148,118],[6,73,45,14,74,46],[11,54,24,16,55,25],[30,46,16,2,47,17],[8,132,106,4,133,107],[8,75,47,13,76,48],[7,54,24,22,55,25],[22,45,15,13,46,16],[10,142,114,2,143,115],[19,74,46,4,75,47],[28,50,22,6,51,23],[33,46,16,4,47,17],[8,152,122,4,153,123],[22,73,45,3,74,46],[8,53,23,26,54,24],[12,45,15,28,46,16],[3,147,117,10,148,118],[3,73,45,23,74,46],[4,54,24,31,55,25],[11,45,15,31,46,16],[7,146,116,7,147,117],[21,73,45,7,74,46],[1,53,23,37,54,24],[19,45,15,26,46,16],[5,145,115,10,146,116],[19,75,47,10,76,48],[15,54,24,25,55,25],[23,45,15,25,46,16],[13,145,115,3,146,116],[2,74,46,29,75,47],[42,54,24,1,55,25],[23,45,15,28,46,16],[17,145,115],[10,74,46,23,75,47],[10,54,24,35,55,25],[19,45,15,35,46,16],[17,145,115,1,146,116],[14,74,46,21,75,47],[29,54,24,19,55,25],[11,45,15,46,46,16],[13,145,115,6,146,116],[14,74,46,23,75,47],[44,54,24,7,55,25],[59,46,16,1,47,17],[12,151,121,7,152,122],[12,75,47,26,76,48],[39,54,24,14,55,25],[22,45,15,41,46,16],[6,151,121,14,152,122],[6,75,47,34,76,48],[46,54,24,10,55,25],[2,45,15,64,46,16],[17,152,122,4,153,123],[29,74,46,14,75,47],[49,54,24,10,55,25],[24,45,15,46,46,16],[4,152,122,18,153,123],[13,74,46,32,75,47],[48,54,24,14,55,25],[42,45,15,32,46,16],[20,147,117,4,148,118],[40,75,47,7,76,48],[43,54,24,22,55,25],[10,45,15,67,46,16],[19,148,118,6,149,119],[18,75,47,31,76,48],[34,54,24,34,55,25],[20,45,15,61,46,16]],r=function(t,r){var e={};return e.totalCount=t,e.dataCount=r,e},e={};return e.getRSBlocks=function(e,n){var o=function(r,e){switch(e){case g.L:return t[4*(r-1)+0];case g.M:return t[4*(r-1)+1];case g.Q:return t[4*(r-1)+2];case g.H:return t[4*(r-1)+3];default:return}}(e,n);if(void 0===o)throw"bad rs block @ typeNumber:"+e+"/errorCorrectionLevel:"+n;for(var i=o.length/3,a=[],u=0;u<i;u+=1)for(var f=o[3*u+0],c=o[3*u+1],l=o[3*u+2],h=0;h<f;h+=1)a.push(r(c,l));return a},e}(),b=function(){var t=[],r=0,e={getBuffer:function(){return t},getAt:function(r){var e=Math.floor(r/8);return 1==(t[e]>>>7-r%8&1)},put:function(t,r){for(var n=0;n<r;n+=1)e.putBit(1==(t>>>r-n-1&1))},getLengthInBits:function(){return r},putBit:function(e){var n=Math.floor(r/8);t.length<=n&&t.push(0),e&&(t[n]|=128>>>r%8),r+=1}};return e},M=function(t){var r=a,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+2<r.length;)t.put(o(r.substring(n,n+3)),10),n+=3;n<r.length&&(r.length-n==1?t.put(o(r.substring(n,n+1)),4):r.length-n==2&&t.put(o(r.substring(n,n+2)),7))}},o=function(t){for(var r=0,e=0;e<t.length;e+=1)r=10*r+i(t.charAt(e));return r},i=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);throw"illegal char :"+t};return n},x=function(t){var r=u,e=t,n={getMode:function(){return r},getLength:function(t){return e.length},write:function(t){for(var r=e,n=0;n+1<r.length;)t.put(45*o(r.charAt(n))+o(r.charAt(n+1)),11),n+=2;n<r.length&&t.put(o(r.charAt(n)),6)}},o=function(t){if("0"<=t&&t<="9")return t.charCodeAt(0)-"0".charCodeAt(0);if("A"<=t&&t<="Z")return t.charCodeAt(0)-"A".charCodeAt(0)+10;switch(t){case" ":return 36;case"$":return 37;case"%":return 38;case"*":return 39;case"+":return 40;case"-":return 41;case".":return 42;case"/":return 43;case":":return 44;default:throw"illegal char :"+t}};return n},m=function(r){var e=f,n=t.stringToBytes(r),o={getMode:function(){return e},getLength:function(t){return n.length},write:function(t){for(var r=0;r<n.length;r+=1)t.put(n[r],8)}};return o},L=function(r){var e=c,n=t.stringToBytesFuncs.SJIS;if(!n)throw"sjis not supported.";!function(){var t=n("友");if(2!=t.length||38726!=(t[0]<<8|t[1]))throw"sjis not supported."}();var o=n(r),i={getMode:function(){return e},getLength:function(t){return~~(o.length/2)},write:function(t){for(var r=o,e=0;e+1<r.length;){var n=(255&r[e])<<8|255&r[e+1];if(33088<=n&&n<=40956)n-=33088;else{if(!(57408<=n&&n<=60351))throw"illegal char at "+(e+1)+"/"+n;n-=49472}n=192*(n>>>8&255)+(255&n),t.put(n,13),e+=2}if(e<r.length)throw"illegal char at "+(e+1)}};return i},D=function(){var t=[],r={writeByte:function(r){t.push(255&r)},writeShort:function(t){r.writeByte(t),r.writeByte(t>>>8)},writeBytes:function(t,e,n){e=e||0,n=n||t.length;for(var o=0;o<n;o+=1)r.writeByte(t[o+e])},writeString:function(t){for(var e=0;e<t.length;e+=1)r.writeByte(t.charCodeAt(e))},toByteArray:function(){return t},toString:function(){var r="";r+="[";for(var e=0;e<t.length;e+=1)e>0&&(r+=","),r+=t[e];return r+="]"}};return r},S=function(t){var r=t,e=0,n=0,o=0,i={read:function(){for(;o<8;){if(e>=r.length){if(0==o)return-1;throw"unexpected end of file./"+o}var t=r.charAt(e);if(e+=1,"="==t)return o=0,-1;t.match(/^\s$/)||(n=n<<6|a(t.charCodeAt(0)),o+=6)}var i=n>>>o-8&255;return o-=8,i}},a=function(t){if(65<=t&&t<=90)return t-65;if(97<=t&&t<=122)return t-97+26;if(48<=t&&t<=57)return t-48+52;if(43==t)return 62;if(47==t)return 63;throw"c:"+t};return i},I=function(t,r,e){for(var n=function(t,r){var e=t,n=r,o=new Array(t*r),i={setPixel:function(t,r,n){o[r*e+t]=n},write:function(t){t.writeString("GIF87a"),t.writeShort(e),t.writeShort(n),t.writeByte(128),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(0),t.writeByte(255),t.writeByte(255),t.writeByte(255),t.writeString(","),t.writeShort(0),t.writeShort(0),t.writeShort(e),t.writeShort(n),t.writeByte(0);var r=a(2);t.writeByte(2);for(var o=0;r.length-o>255;)t.writeByte(255),t.writeBytes(r,o,255),o+=255;t.writeByte(r.length-o),t.writeBytes(r,o,r.length-o),t.writeByte(0),t.writeString(";")}},a=function(t){for(var r=1<<t,e=1+(1<<t),n=t+1,i=u(),a=0;a<r;a+=1)i.add(String.fromCharCode(a));i.add(String.fromCharCode(r)),i.add(String.fromCharCode(e));var f,c,g,l=D(),h=(f=l,c=0,g=0,{write:function(t,r){if(t>>>r!=0)throw"length over";for(;c+r>=8;)f.writeByte(255&(t<<c|g)),r-=8-c,t>>>=8-c,g=0,c=0;g|=t<<c,c+=r},flush:function(){c>0&&f.writeByte(g)}});h.write(r,n);var s=0,v=String.fromCharCode(o[s]);for(s+=1;s<o.length;){var d=String.fromCharCode(o[s]);s+=1,i.contains(v+d)?v+=d:(h.write(i.indexOf(v),n),i.size()<4095&&(i.size()==1<<n&&(n+=1),i.add(v+d)),v=d)}return h.write(i.indexOf(v),n),h.write(e,n),h.flush(),l.toByteArray()},u=function(){var t={},r=0,e={add:function(n){if(e.contains(n))throw"dup key:"+n;t[n]=r,r+=1},size:function(){return r},indexOf:function(r){return t[r]},contains:function(r){return void 0!==t[r]}};return e};return i}(t,r),o=0;o<r;o+=1)for(var i=0;i<t;i+=1)n.setPixel(i,o,e(i,o));var a=D();n.write(a);for(var u=function(){var t=0,r=0,e=0,n="",o={},i=function(t){n+=String.fromCharCode(a(63&t))},a=function(t){if(t<0);else{if(t<26)return 65+t;if(t<52)return t-26+97;if(t<62)return t-52+48;if(62==t)return 43;if(63==t)return 47}throw"n:"+t};return o.writeByte=function(n){for(t=t<<8|255&n,r+=8,e+=1;r>=6;)i(t>>>r-6),r-=6},o.flush=function(){if(r>0&&(i(t<<6-r),t=0,r=0),e%3!=0)for(var o=3-e%3,a=0;a<o;a+=1)n+="="},o.toString=function(){return n},o}(),f=a.toByteArray(),c=0;c<f.length;c+=1)u.writeByte(f[c]);return u.flush(),"data:image/gif;base64,"+u};return t}();qrcode.stringToBytesFuncs["UTF-8"]=function(t){return function(t){for(var r=[],e=0;e<t.length;e++){var n=t.charCodeAt(e);n<128?r.push(n):n<2048?r.push(192|n>>6,128|63&n):n<55296||n>=57344?r.push(224|n>>12,128|n>>6&63,128|63&n):(e++,n=65536+((1023&n)<<10|1023&t.charCodeAt(e)),r.push(240|n>>18,128|n>>12&63,128|n>>6&63,128|63&n))}return r}(t)},function(t){"function"==typeof define&&define.amd?define([],t):"object"==typeof exports&&(module.exports=t())}(function(){return qrcode});
+</script>
+
+<script>
+// ---------- CONFIG ----------
+// 1) Collez ici l'URL de votre déploiement Google Apps Script (voir Code.gs fourni).
+// 2) Le code d'accès n'est plus stocké ici : il est saisi à l'écran et vérifié côté
+//    serveur (voir la constante SECRET dans Code.gs).
+const API_URL = "https://script.google.com/macros/s/AKfycbylshIQsIDDBkmHwV_nyHzj4Wc-IKjqDqhma04bksTN7wV27C5dsHFqcuF-wKcjahEN5w/exec"
+if(!API_URL){
+  // Aucune requête n'est envoyée tant que le serveur du mouvement n'est pas renseigné.
+  window.fetch = () => Promise.reject(new Error('Plate-forme non configurée : renseignez API_URL.'));
+  document.body.insertAdjacentHTML('afterbegin', '<div id="cfg-banner" style="background:#FDECEC;color:#8A1C1C;border-bottom:2px solid #E31B23;padding:12px 16px;font-size:13.5px;line-height:1.5;text-align:center;"><b>Configuration requise.</b> Cette plate-forme n\'est pas encore reliée à son serveur : déployez <b>Code.gs</b> (Google Apps Script), puis collez l\'URL <b>/exec</b> dans la constante <b>API_URL</b> de ce fichier.</div>');
+}
+let sessionSecret = "";
+const MOUVEMENT = "AND DOLEL KAW";
+const LEADER = "MAMADOU DIOUF dit KAW";
+const LOCALITE = "Koungheul";
+let userRole = 'comite', userComite = null, comitesList = [];
+
+async function loadComites(){
+  const sel = document.getElementById('comite');
+  try{
+    const res = await fetch(API_URL + '?action=comites');
+    const data = await res.json();
+    comitesList = (data && data.ok && data.comites) || [];
+  }catch(e){ comitesList = []; }
+  if(!comitesList.length){ sel.innerHTML = '<option value="">' + (API_URL ? 'Comités indisponibles — réessayez plus tard' : 'Plate-forme non configurée') + '</option>'; return; }
+  sel.innerHTML = '<option value="">— Choisir votre comité —</option>' +
+    comitesList.map(c=>`<option value="${escapeHtml(c.id)}">${escapeHtml(c.nom)}</option>`).join('');
+  const pre = new URLSearchParams(location.search).get('c');
+  if(pre && comitesList.some(c=>c.id===pre)){ sel.value = pre; sel.disabled = true; }
+}
+function currentComiteNom(){
+  if(qrOverride) return qrOverride.nom;
+  if(userRole==='comite' && userComite) return userComite.nom;
+  return document.getElementById('filter-comite').value || '';
+}
+function currentComiteId(){
+  if(userRole==='comite' && userComite) return userComite.id;
+  const c = comitesList.find(x=>x.nom===document.getElementById('filter-comite').value);
+  return c ? c.id : '';
+}
+function setupRole(data){
+  userRole = data.role || 'comite'; userComite = data.comite || null;
+  document.getElementById('contact-note').innerHTML = userRole==='admin'
+    ? `Coordination générale : <b>${LEADER}</b> — vue sur <b>tous les comités</b>`
+    : `Comité : <b>${escapeHtml(userComite.nom)}</b>${userComite.responsable ? ` — Responsable : <b>${escapeHtml(userComite.responsable)}</b>` : ''}`;
+  document.getElementById('filter-comite').style.display = userRole==='admin' ? '' : 'none';
+}
+function sigData(){
+  const c = document.createElement('canvas');
+  c.width = 360; c.height = Math.max(1, Math.round(360 * canvas.height / canvas.width));
+  const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0,0,c.width,c.height);
+  x.drawImage(canvas,0,0,c.width,c.height);
+  return c.toDataURL('image/png');
+}
+loadComites();
+
+// ---------- GESTION DES COMITÉS ET DES ADHÉRENTS ----------
+let qrOverride = null, manageComites = [], editingId = '', editingMatricule = '';
+const $ = id => document.getElementById(id);
+async function api(body){
+  const res = await fetch(API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify(Object.assign({secret: sessionSecret}, body))});
+  const d = await res.json();
+  if(!d || !d.ok) throw new Error(d && d.error ? d.error : 'Réponse invalide du serveur.');
+  return d;
+}
+function linkFor(id){ const u = new URL(window.location.href); u.hash = ''; u.search = '?c=' + encodeURIComponent(id); return u.toString(); }
+function resetMgForm(){
+  editingId = '';
+  ['mg-nom','mg-resp','mg-tel','mg-code'].forEach(i => $(i).value = '');
+  $('mg-err').style.display = 'none';
+  $('mg-save').textContent = 'Créer le comité';
+  $('mg-cancel').style.display = 'none';
+}
+function fillMgForm(c){
+  editingId = c.id;
+  $('mg-nom').value = c.nom; $('mg-resp').value = c.responsable || ''; $('mg-tel').value = c.telephone || ''; $('mg-code').value = c.code || '';
+  $('mg-save').textContent = 'Enregistrer les modifications';
+  $('mg-cancel').style.display = userRole === 'admin' ? '' : 'none';
+  $('mg-err').style.display = 'none';
+}
+function renderManage(){
+  const admin = userRole === 'admin';
+  $('manage-btn').textContent = admin ? 'Gérer les comités' : 'Gérer mon comité';
+  $('mg-title').textContent = admin ? 'Gestion des comités' : 'Gestion de mon comité';
+  $('mg-nom').readOnly = !admin;
+  if(!admin && manageComites[0] && editingId !== manageComites[0].id) fillMgForm(manageComites[0]);
+  else if(admin && !editingId) $('mg-save').textContent = 'Créer le comité';
+  $('mg-list').innerHTML = !manageComites.length ? '<div class="empty">Aucun comité créé pour le moment. Remplissez le formulaire ci-dessus pour créer le premier.</div>' :
+    `<table><thead><tr><th>Comité</th><th>Responsable</th><th>Code</th><th>Adhérents</th><th>Actions</th></tr></thead><tbody>${
+      manageComites.map((c,i)=>`<tr><td>${escapeHtml(c.nom)}</td><td>${escapeHtml(c.responsable||'—')}<br/><span class="mono">${escapeHtml(c.telephone||'')}</span></td><td class="mono">${escapeHtml(c.code)}</td><td>${c.count}</td><td><button class="btn-row-print" onclick="editComite(${i})">Modifier</button> <button class="btn-row-print" onclick="copyComiteLink(${i})">Lien</button> <button class="btn-row-print" onclick="qrComite(${i})">QR code</button>${admin ? ` <button class="btn-row-print" onclick="delComite(${i})" style="color:var(--red);">Supprimer</button>` : ''}</td></tr>`).join('')
+    }</tbody></table>`;
+}
+$('manage-btn').addEventListener('click', ()=>{
+  const p = $('manage-panel');
+  p.style.display = p.style.display === 'none' ? 'block' : 'none';
+  renderManage();
+});
+$('mg-cancel').addEventListener('click', resetMgForm);
+function editComite(i){ fillMgForm(manageComites[i]); $('mg-form').scrollIntoView({behavior:'smooth', block:'center'}); }
+function qrComite(i){ qrOverride = {id: manageComites[i].id, nom: manageComites[i].nom}; showQr(); }
+function copyComiteLink(i){
+  const l = linkFor(manageComites[i].id);
+  const ok = () => alert('Lien du comité copié :\n' + l);
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(l).then(ok).catch(()=>prompt('Copiez ce lien :', l)); }
+  else prompt('Copiez ce lien :', l);
+}
+async function delComite(i){
+  const c = manageComites[i];
+  if(!confirm('Supprimer le comité « ' + c.nom + ' » ? Cette action est définitive.')) return;
+  try{ await api({action:'comite_delete', id:c.id}); if(editingId === c.id) resetMgForm(); await loadSubmissions(); loadComites(); }
+  catch(e){ alert(e.message); }
+}
+$('mg-save').addEventListener('click', async ()=>{
+  const err = $('mg-err'); err.style.display = 'none';
+  const body = {action:'comite_save', id:editingId, nom:$('mg-nom').value.trim(), responsable:$('mg-resp').value.trim(), telephone:$('mg-tel').value.trim(), code:$('mg-code').value.trim()};
+  if(!body.id && !body.nom){ err.textContent = 'Indiquez le nom du comité.'; err.style.display = 'block'; return; }
+  const btn = $('mg-save'); btn.disabled = true;
+  try{
+    const r = await api(body);
+    if(userRole === 'comite' && body.code) sessionSecret = body.code;
+    const wasNew = !body.id;
+    resetMgForm();
+    await loadSubmissions(); loadComites();
+    if(wasNew) alert('Comité créé.\n\nCode d\'accès du responsable : ' + r.code + '\nLien d\'adhésion : ' + linkFor(r.id) + '\n\nTransmettez ces deux informations au responsable du comité.');
+  }catch(e){ err.textContent = e.message; err.style.display = 'block'; }
+  btn.disabled = false;
+});
+
+function editMembre(idx){
+  const r = currentRecords[idx]; if(!r) return;
+  editingMatricule = r.matricule;
+  $('mb-nom').value = r.nom; $('mb-section').value = r.section; $('mb-tel').value = r.telephone;
+  $('mb-carte').value = r.carteElecteur || ''; $('mb-centre').value = r.centreVote || ''; $('mb-bureau').value = r.bureauVote || ''; $('mb-accord').value = r.accord;
+  $('mb-err').style.display = 'none';
+  $('mb-modal').classList.add('show');
+}
+$('mb-cancel').addEventListener('click', ()=> $('mb-modal').classList.remove('show'));
+$('mb-save').addEventListener('click', async ()=>{
+  const err = $('mb-err'); err.style.display = 'none';
+  const btn = $('mb-save'); btn.disabled = true;
+  try{
+    await api({action:'membre_update', matricule:editingMatricule, nom:$('mb-nom').value, section:$('mb-section').value,
+      telephone:$('mb-tel').value, carteElecteur:$('mb-carte').value, centreVote:$('mb-centre').value, bureauVote:$('mb-bureau').value, accord:$('mb-accord').value});
+    $('mb-modal').classList.remove('show');
+    await loadSubmissions();
+  }catch(e){ err.textContent = e.message; err.style.display = 'block'; }
+  btn.disabled = false;
+});
+async function delMembre(idx){
+  const r = currentRecords[idx]; if(!r) return;
+  if(!confirm('Supprimer définitivement l\'adhésion de ' + r.nom + ' ?')) return;
+  try{ await api({action:'membre_delete', matricule:r.matricule}); await loadSubmissions(); }
+  catch(e){ alert(e.message); }
+}
+
+// ---------- TABS ----------
+function revealWorkspace(){
+  document.getElementById('tabs-bar').style.display = 'flex';
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+  document.querySelector('.tab[data-tab="dash"]').classList.add('active');
+  document.getElementById('panel-dash').classList.add('active');
+}
+if(window.location.hash.toLowerCase() === '#responsable'){
+  revealWorkspace();
+}
+document.getElementById('open-workspace-btn').addEventListener('click', revealWorkspace);
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('panel-'+t.dataset.tab).classList.add('active');
+    if(t.dataset.tab==='dash' && document.getElementById('dash-content').style.display!=='none'){
+      loadSubmissions();
+    }
+  });
+});
+
+// ---------- ACCORD RADIO ----------
+document.querySelectorAll('.accord-opt').forEach(opt=>{
+  opt.addEventListener('click', ()=>{
+    document.querySelectorAll('.accord-opt').forEach(o=>o.classList.remove('checked'));
+    opt.classList.add('checked');
+    opt.querySelector('input').checked = true;
+  });
+});
+
+// ---------- SIGNATURE PAD ----------
+const canvas = document.getElementById('sigpad');
+const ctx = canvas.getContext('2d');
+let drawing = false, hasSignature = false;
+let lastX=0, lastY=0;
+
+function resizeCanvas(){
+  const rect = canvas.getBoundingClientRect();
+  const ratio = window.devicePixelRatio || 1;
+  canvas.width = rect.width * ratio;
+  canvas.height = rect.height * ratio;
+  ctx.scale(ratio, ratio);
+  ctx.lineWidth = 2;
+  ctx.lineCap = 'round';
+  ctx.lineJoin = 'round';
+  ctx.strokeStyle = '#16233F';
+}
+window.addEventListener('resize', resizeCanvas);
+setTimeout(resizeCanvas, 50);
+
+function getPos(e){
+  const rect = canvas.getBoundingClientRect();
+  if(e.touches && e.touches[0]){
+    return {x: e.touches[0].clientX-rect.left, y: e.touches[0].clientY-rect.top};
+  }
+  return {x: e.clientX-rect.left, y: e.clientY-rect.top};
+}
+function startDraw(e){ e.preventDefault(); drawing=true; const p=getPos(e); lastX=p.x; lastY=p.y; }
+function draw(e){
+  if(!drawing) return;
+  e.preventDefault();
+  const p = getPos(e);
+  ctx.beginPath();
+  ctx.moveTo(lastX,lastY);
+  ctx.lineTo(p.x,p.y);
+  ctx.stroke();
+  lastX=p.x; lastY=p.y;
+  hasSignature = true;
+}
+function endDraw(){ drawing=false; }
+canvas.addEventListener('mousedown', startDraw);
+canvas.addEventListener('mousemove', draw);
+canvas.addEventListener('mouseup', endDraw);
+canvas.addEventListener('mouseleave', endDraw);
+canvas.addEventListener('touchstart', startDraw, {passive:false});
+canvas.addEventListener('touchmove', draw, {passive:false});
+canvas.addEventListener('touchend', endDraw);
+
+document.getElementById('clear-sig').addEventListener('click', ()=>{
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  hasSignature = false;
+});
+
+// ---------- PHOTO ----------
+let photoData = '', photoStream = null, lastRecord = null;
+const pe = id => document.getElementById(id);
+function stopCam(){
+  if(photoStream){ photoStream.getTracks().forEach(t=>t.stop()); photoStream = null; }
+  pe('photo-video').style.display = 'none'; pe('photo-snap').style.display = 'none';
+}
+function showPhoto(){
+  pe('photo-preview').style.display = photoData ? 'block' : 'none';
+  if(photoData) pe('photo-preview').src = photoData;
+  pe('photo-placeholder').style.display = (photoData || photoStream) ? 'none' : 'flex';
+  pe('photo-clear').style.display = photoData ? '' : 'none';
+  pe('photo-start').textContent = photoData ? 'Reprendre la photo' : 'Prendre une photo';
+}
+function setPhotoFrom(src, sw, sh){
+  const W = 210, H = 280, c = document.createElement('canvas'); c.width = W; c.height = H;
+  const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, W, H);
+  const k = Math.max(W / sw, H / sh);
+  x.drawImage(src, (W - sw * k) / 2, (H - sh * k) / 2, sw * k, sh * k);
+  let q = 0.75, d = c.toDataURL('image/jpeg', q);
+  while(d.length > 30000 && q > 0.4){ q -= 0.1; d = c.toDataURL('image/jpeg', q); }
+  photoData = d; showPhoto();
+}
+pe('photo-start').addEventListener('click', async ()=>{
+  stopCam();
+  if(!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)){ pe('photo-cam').click(); return; }
+  try{
+    photoStream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user', width:{ideal:720}, height:{ideal:960}}, audio:false});
+    const v = pe('photo-video'); v.srcObject = photoStream; await v.play();
+    v.style.display = 'block'; pe('photo-snap').style.display = '';
+    pe('photo-preview').style.display = 'none'; pe('photo-placeholder').style.display = 'none';
+  }catch(e){ stopCam(); pe('photo-cam').click(); }
+});
+pe('photo-snap').addEventListener('click', ()=>{
+  const v = pe('photo-video'); if(!v.videoWidth) return;
+  setPhotoFrom(v, v.videoWidth, v.videoHeight); stopCam(); showPhoto();
+});
+function photoFromFile(f){
+  if(!f) return;
+  const img = new Image(), u = URL.createObjectURL(f);
+  img.onload = ()=>{ stopCam(); setPhotoFrom(img, img.naturalWidth, img.naturalHeight); URL.revokeObjectURL(u); };
+  img.onerror = ()=>{ URL.revokeObjectURL(u); alert("Image illisible. Choisissez une photo au format JPG ou PNG."); };
+  img.src = u;
+}
+pe('photo-pick').addEventListener('click', ()=> pe('photo-file').click());
+pe('photo-file').addEventListener('change', e=>{ photoFromFile(e.target.files[0]); e.target.value = ''; });
+pe('photo-cam').addEventListener('change', e=>{ photoFromFile(e.target.files[0]); e.target.value = ''; });
+pe('my-card-btn').addEventListener('click', ()=>{ if(lastRecord) printCartes([lastRecord]); });
+pe('my-card-png').addEventListener('click', ()=>{ if(lastRecord) downloadCartes([lastRecord]); });
+pe('photo-clear').addEventListener('click', ()=>{ photoData = ''; stopCam(); showPhoto(); });
+
+// ---------- CHECK DUPLICATE CNI ----------
+const cniInput = document.getElementById('cni');
+let dupCheckTimer;
+cniInput.addEventListener('input', ()=>{
+  clearTimeout(dupCheckTimer);
+  const warn = document.getElementById('dup-warning');
+  warn.style.display='none';
+  const cni = cniInput.value.trim();
+  if(!cni) return;
+  dupCheckTimer = setTimeout(async ()=>{
+    try{
+      const res = await fetch(API_URL + '?action=check&matricule=' + encodeURIComponent(cni));
+      const data = await res.json();
+      if(data && data.ok && data.exists){
+        warn.textContent = 'Une confirmation existe déjà pour ce numéro de CNI (' + data.nom + (data.comite ? ', comité ' + data.comite : '') + '). L\'envoyer remplacera la précédente.';
+        warn.style.display='block';
+      }
+    }catch(e){ /* pas de connexion ou clé inexistante : rien à faire */ }
+  }, 500);
+});
+
+// ---------- GEOLOCATION ----------
+function getPosition(){
+  return Promise.resolve(null);
+}
+
+// ---------- SUBMIT ----------
+document.getElementById('submit-btn').addEventListener('click', async ()=>{
+  const comiteSel = document.getElementById('comite');
+  const comiteId = comiteSel.value;
+  const comiteNomSel = comiteSel.selectedOptions[0] ? comiteSel.selectedOptions[0].textContent : '';
+  const nom = document.getElementById('nom').value.trim().toUpperCase();
+  const cni = document.getElementById('cni').value.trim();
+  const quartier = document.getElementById('quartier').value.trim();
+  const telephone = document.getElementById('tel').value.trim();
+  const carteElecteur = document.getElementById('carte-electeur').value.trim();
+  const centreVote = document.getElementById('centre-vote').value.trim();
+  const bureauVote = document.getElementById('bureau-vote').value.trim();
+  const accordEl = document.querySelector('input[name=accord]:checked');
+  const errorEl = document.getElementById('error-msg');
+  errorEl.style.display='none';
+
+  if(!comiteId || !nom || !cni || !quartier || !telephone || !accordEl || !hasSignature){
+    errorEl.textContent = 'Merci de remplir tous les champs et de signer avant de confirmer.';
+    errorEl.style.display='block';
+    return;
+  }
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true; btn.textContent = 'Envoi en cours…';
+
+  const position = await getPosition();
+  const record = {
+    nom, matricule: cni, section: quartier, telephone, comiteId, comite: comiteNomSel,
+    carteElecteur, centreVote, bureauVote, photo: photoData,
+    accord: accordEl.value,
+    signature: sigData(),
+    date: new Date().toISOString(),
+    position
+  };
+
+  try{
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: {'Content-Type': 'text/plain;charset=utf-8'},
+      body: JSON.stringify(record)
+    });
+    const resData = await res.json();
+    if(!resData || !resData.ok){
+      throw new Error(resData && resData.error ? resData.error : 'Réponse invalide du serveur.');
+    }
+    lastRecord = Object.assign({}, record, {numero: resData.numero || ''});
+    document.getElementById('receipt').innerHTML = `
+      <div><span class="k">Nom</span><span class="v">${escapeHtml(nom)}</span></div>
+      <div><span class="k">CNI</span><span class="v mono">${escapeHtml(cni)}</span></div>
+      <div><span class="k">Comité</span><span class="v">${escapeHtml(comiteNomSel)}</span></div>
+      <div><span class="k">Quartier</span><span class="v">${escapeHtml(quartier)}</span></div>
+      ${carteElecteur ? `<div><span class="k">Carte électeur</span><span class="v mono">${escapeHtml(carteElecteur)}</span></div>` : ''}
+      ${centreVote ? `<div><span class="k">Centre de vote</span><span class="v">${escapeHtml(centreVote)}</span></div>` : ''}
+      ${bureauVote ? `<div><span class="k">Bureau de vote</span><span class="v">${escapeHtml(bureauVote)}</span></div>` : ''}
+      <div><span class="k">Adhésion</span><span class="v" style="color:${accordEl.value==='Oui'?'#3F6C51':'#A23E34'};">${accordEl.value}</span></div>
+      ${resData.numero ? `<div><span class="k">N° de membre</span><span class="v mono">${escapeHtml(resData.numero)}</span></div>
+      <div><span class="k">Code-barres</span><span class="v"><img src="${barcodeSVG(resData.numero)}" alt="" style="width:150px;height:34px;vertical-align:middle;" /></span></div>` : ''}
+      ${photoData ? `<div><span class="k">Photo</span><span class="v"><img src="${photoData}" alt="" style="width:36px;height:48px;object-fit:cover;border-radius:4px;vertical-align:middle;" /></span></div>` : ''}
+      <div><span class="k">Date</span><span class="v">${new Date().toLocaleString('fr-FR')}</span></div>
+    `;
+    document.getElementById('rc-comite').textContent = comiteNomSel;
+    document.getElementById('form-card').style.display='none';
+    document.getElementById('confirm-card').style.display='block';
+  }catch(e){
+    errorEl.textContent = "Une erreur est survenue lors de l'enregistrement (" + e.message + "). Réessayez.";
+    errorEl.style.display='block';
+  }
+  btn.disabled = false; btn.textContent = 'Confirmer et envoyer';
+});
+
+document.getElementById('new-entry-btn').addEventListener('click', ()=>{
+  document.getElementById('nom').value='';
+  document.getElementById('cni').value='';
+  document.getElementById('quartier').value='';
+  document.getElementById('tel').value='';
+  document.getElementById('carte-electeur').value='';
+  document.getElementById('centre-vote').value='';
+  photoData=''; stopCam(); showPhoto();
+  document.getElementById('bureau-vote').value='';
+  document.querySelectorAll('.accord-opt').forEach(o=>o.classList.remove('checked'));
+  document.querySelectorAll('input[name=accord]').forEach(i=>i.checked=false);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  hasSignature=false;
+  document.getElementById('dup-warning').style.display='none';
+  document.getElementById('confirm-card').style.display='none';
+  document.getElementById('form-card').style.display='block';
+});
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+// ---------- DASHBOARD GATE ----------
+document.getElementById('pin-submit').addEventListener('click', checkPin);
+document.getElementById('pin-input').addEventListener('keydown', e=>{ if(e.key==='Enter') checkPin(); });
+async function checkPin(){
+  const val = document.getElementById('pin-input').value.trim();
+  const err = document.getElementById('pin-error');
+  err.style.display='none';
+  sessionSecret = val;
+  try{
+    const res = await fetch(API_URL + '?action=list&secret=' + encodeURIComponent(val));
+    const data = await res.json();
+    if(data && data.ok){
+      document.getElementById('dash-gate').style.display='none';
+      document.getElementById('dash-content').style.display='block';
+      setupRole(data);
+      manageComites = data.comites || []; renderManage();
+      allRecords = data.records || [];
+      populateSectionFilter(allRecords);
+      currentPage = 1;
+      applyFiltersAndRender();
+    }else{
+      err.textContent = (data && data.error) ? data.error : 'Code incorrect.';
+      err.style.display='block';
+    }
+  }catch(e){
+    err.textContent = API_URL ? "Impossible de contacter le serveur. Vérifiez la connexion." : "Plate-forme non configurée : renseignez API_URL (voir Code.gs).";
+    err.style.display='block';
+  }
+}
+
+// ---------- DASHBOARD DATA ----------
+let allRecords = [];
+let currentRecords = [];
+let sortField = 'date';
+let sortDir = 'desc';
+let currentPage = 1;
+const PAGE_SIZE = 15;
+
+async function loadSubmissions(){
+  try{
+    const res = await fetch(API_URL + '?action=list&secret=' + encodeURIComponent(sessionSecret));
+    const data = await res.json();
+    if(!data || !data.ok){
+      throw new Error(data && data.error ? data.error : 'Erreur inconnue');
+    }
+    manageComites = data.comites || []; renderManage();
+    allRecords = data.records || [];
+    populateSectionFilter(allRecords);
+    currentPage = 1;
+    applyFiltersAndRender();
+  }catch(e){
+    document.getElementById('table-body').innerHTML='';
+    document.getElementById('empty-state').style.display='block';
+    document.getElementById('empty-state').textContent = "Impossible de charger les confirmations pour le moment.";
+  }
+}
+
+function populateComiteFilter(records){
+  const noms = [...new Set(records.map(r=>r.comite).filter(Boolean))].sort();
+  const sel = document.getElementById('filter-comite');
+  const cur = sel.value;
+  sel.innerHTML = '<option value="">Tous les comités</option>' + noms.map(n=>`<option value="${escapeHtml(n)}">${escapeHtml(n)}</option>`).join('');
+  if(noms.includes(cur)) sel.value = cur;
+}
+function populateSectionFilter(records){
+  populateComiteFilter(records);
+  const sections = [...new Set(records.map(r=>r.section).filter(Boolean))].sort();
+  const sel = document.getElementById('filter-section');
+  const current = sel.value;
+  sel.innerHTML = '<option value="">Tous les quartiers</option>' +
+    sections.map(s=>`<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('');
+  if(sections.includes(current)) sel.value = current;
+}
+
+function renderStats(records){
+  document.getElementById('stat-total').textContent = records.length;
+  document.getElementById('stat-oui').textContent = records.filter(r=>r.accord==='Oui').length;
+  document.getElementById('stat-non').textContent = records.filter(r=>r.accord==='Non').length;
+}
+
+function renderSectionStats(records){
+  const card = document.getElementById('section-stats-card');
+  const body = document.getElementById('section-stats-body');
+  if(records.length===0){ card.style.display='none'; return; }
+  const groupField = (userRole==='admin' && !document.getElementById('filter-comite').value) ? 'comite' : 'section';
+  document.getElementById('section-stats-title').textContent = groupField==='comite' ? 'Répartition par comité' : 'Répartition par quartier';
+  const bySection = {};
+  records.forEach(r=>{
+    const s = r[groupField] || '—';
+    if(!bySection[s]) bySection[s] = { total:0, oui:0, non:0 };
+    bySection[s].total++;
+    if(r.accord==='Oui') bySection[s].oui++; else bySection[s].non++;
+  });
+  const rows = Object.keys(bySection).sort((a,b)=>a.localeCompare(b)).map(s=>{
+    const v = bySection[s];
+    return `<div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #EFEFF3;font-size:13px;">
+      <span>${escapeHtml(s)}</span>
+      <span><strong>${v.total}</strong> · <span style="color:var(--green);">${v.oui} oui</span> · <span style="color:var(--red);">${v.non} non</span></span>
+    </div>`;
+  }).join('');
+  body.innerHTML = rows;
+  card.style.display = 'block';
+}
+
+// ---------- FILTRES + TRI + PAGINATION ----------
+function applyFiltersAndRender(){
+  const q = document.getElementById('search-input').value.toLowerCase().trim();
+  const accordFilter = document.getElementById('filter-accord').value;
+  const sectionFilter = document.getElementById('filter-section').value;
+  const comiteFilter = document.getElementById('filter-comite').value;
+
+  let filtered = allRecords.filter(r=>{
+    if(accordFilter && r.accord !== accordFilter) return false;
+    if(sectionFilter && r.section !== sectionFilter) return false;
+    if(comiteFilter && r.comite !== comiteFilter) return false;
+    if(q && !(r.nom.toLowerCase().includes(q) || r.matricule.toLowerCase().includes(q) || r.section.toLowerCase().includes(q) || (r.comite||'').toLowerCase().includes(q) || (r.numero||'').toLowerCase().includes(q) || (r.centreVote||'').toLowerCase().includes(q) || (r.bureauVote||'').toLowerCase().includes(q))) return false;
+    return true;
+  });
+
+  filtered.sort((a,b)=>{
+    let va, vb;
+    if(sortField==='date'){ va = new Date(a.date); vb = new Date(b.date); }
+    else { va = (a[sortField]||'').toString().toLowerCase(); vb = (b[sortField]||'').toString().toLowerCase(); }
+    if(va < vb) return sortDir==='asc' ? -1 : 1;
+    if(va > vb) return sortDir==='asc' ? 1 : -1;
+    return 0;
+  });
+
+  currentRecords = filtered;
+  renderStats(allRecords);
+  renderSectionStats(filtered);
+  updateSortIndicators();
+
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PAGE_SIZE));
+  if(currentPage > totalPages) currentPage = totalPages;
+  const start = (currentPage-1) * PAGE_SIZE;
+  const pageRecords = filtered.slice(start, start + PAGE_SIZE);
+
+  renderTable(pageRecords, start);
+
+  document.getElementById('page-indicator').textContent =
+    filtered.length === 0 ? 'Aucun résultat' : `Page ${currentPage} / ${totalPages} — ${filtered.length} confirmation(s)`;
+  document.getElementById('page-prev').disabled = currentPage <= 1;
+  document.getElementById('page-next').disabled = currentPage >= totalPages;
+}
+
+function updateSortIndicators(){
+  document.querySelectorAll('th.sortable').forEach(th=>{
+    th.querySelectorAll('.arrow').forEach(a=>a.remove());
+    if(th.dataset.sort === sortField){
+      const arrow = document.createElement('span');
+      arrow.className = 'arrow';
+      arrow.textContent = sortDir==='asc' ? '▲' : '▼';
+      th.appendChild(arrow);
+    }
+  });
+}
+
+document.querySelectorAll('th.sortable').forEach(th=>{
+  th.addEventListener('click', ()=>{
+    const field = th.dataset.sort;
+    if(sortField === field){ sortDir = sortDir==='asc' ? 'desc' : 'asc'; }
+    else { sortField = field; sortDir = 'asc'; }
+    currentPage = 1;
+    applyFiltersAndRender();
+  });
+});
+
+document.getElementById('page-prev').addEventListener('click', ()=>{ currentPage--; applyFiltersAndRender(); });
+document.getElementById('page-next').addEventListener('click', ()=>{ currentPage++; applyFiltersAndRender(); });
+document.getElementById('filter-accord').addEventListener('change', ()=>{ currentPage=1; applyFiltersAndRender(); });
+document.getElementById('filter-section').addEventListener('change', ()=>{ currentPage=1; applyFiltersAndRender(); });
+document.getElementById('filter-comite').addEventListener('change', ()=>{ currentPage=1; applyFiltersAndRender(); });
+document.getElementById('search-input').addEventListener('input', ()=>{ currentPage=1; applyFiltersAndRender(); });
+
+function renderTable(records, offset){
+  const tbody = document.getElementById('table-body');
+  const empty = document.getElementById('empty-state');
+  if(records.length===0){
+    tbody.innerHTML='';
+    empty.style.display='block';
+    empty.textContent = 'Aucune confirmation enregistrée pour le moment.';
+    return;
+  }
+  empty.style.display='none';
+  tbody.innerHTML = records.map((r,i)=>{
+    const idx = offset + i;
+    const d = new Date(r.date);
+    return `<tr>
+      <td>${r.photo ? `<img src="${r.photo}" alt="" onclick="openLightbox(this.src)" style="width:30px;height:40px;object-fit:cover;border-radius:4px;vertical-align:middle;margin-right:8px;cursor:pointer;" />` : ''}${escapeHtml(r.nom)}</td>
+      <td class="mono">${escapeHtml(r.matricule)}</td>
+      <td>${escapeHtml(r.comite||'')}</td>
+      <td>${escapeHtml(r.section)}</td>
+      <td class="mono">${escapeHtml(r.telephone)}</td>
+      <td><span class="pill ${r.accord==='Oui'?'oui':'non'}">${r.accord}</span></td>
+      <td><img class="sig-thumb" src="${r.signature}" onclick="openLightbox('${r.signature.replace(/'/g,"")}')" /></td>
+      <td class="mono">${d.toLocaleDateString('fr-FR')}</td>
+      <td><button class="btn-row-print" onclick="printFiches([currentRecords[${idx}]])">Fiche</button> <button class="btn-row-print" onclick="printCartes([currentRecords[${idx}]])">Carte</button> <button class="btn-row-print" onclick="downloadCartes([currentRecords[${idx}]])">PNG</button> <button class="btn-row-print" onclick="editMembre(${idx})">Modifier</button> <button class="btn-row-print" onclick="delMembre(${idx})" style="color:var(--red);">Supprimer</button></td>
+    </tr>`;
+  }).join('');
+}
+
+// ---------- FICHES INDIVIDUELLES À IMPRIMER ----------
+function ficheHTML(r){
+  const d = new Date(r.date);
+  return `
+    <div class="fiche">
+      <div class="fiche-head">
+        <div>
+          <div class="fiche-eyebrow">République du Sénégal — ${MOUVEMENT}</div>
+          <div class="fiche-eyebrow" style="margin-top:2px;">Leader : ${LEADER} · ${LOCALITE}</div>
+          <div class="fiche-title">Fiche individuelle — Comité : ${escapeHtml(r.comite||'—')}</div>
+        </div>
+        ${r.photo ? `<img class="fiche-photo" src="${r.photo}" alt="" />` : ''}
+      </div>
+      <table>
+        ${r.numero ? `<tr><td class="k">N° de membre</td><td class="v mono">${escapeHtml(r.numero)}</td></tr>` : ''}
+        <tr><td class="k">Nom complet</td><td class="v">${escapeHtml(r.nom)}</td></tr>
+        <tr><td class="k">Numéro CNI</td><td class="v mono">${escapeHtml(r.matricule)}</td></tr>
+        <tr><td class="k">Quartier / Adresse</td><td class="v">${escapeHtml(r.section)}</td></tr>
+        <tr><td class="k">Téléphone</td><td class="v mono">${escapeHtml(r.telephone)}</td></tr>
+        ${r.carteElecteur ? `<tr><td class="k">Carte électeur</td><td class="v mono">${escapeHtml(r.carteElecteur)}</td></tr>` : ''}
+        ${r.centreVote ? `<tr><td class="k">Centre de vote</td><td class="v">${escapeHtml(r.centreVote)}</td></tr>` : ''}
+        ${r.bureauVote ? `<tr><td class="k">Bureau de vote</td><td class="v">${escapeHtml(r.bureauVote)}</td></tr>` : ''}
+        <tr><td class="k">Adhésion</td><td class="v" style="color:${r.accord==='Oui'?'#3F6C51':'#A23E34'};">${r.accord}${r.accord==='Oui' ? ' — Adhésion confirmée' : ' — Adhésion non confirmée'}</td></tr>
+        <tr><td class="k">Date de confirmation</td><td class="v">${d.toLocaleDateString('fr-FR')} à ${d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}</td></tr>
+        ${r.position ? `<tr><td class="k">Position (déclarative)</td><td class="v mono">${r.position.lat.toFixed(5)}, ${r.position.lng.toFixed(5)}</td></tr>` : ''}
+      </table>
+      ${r.numero ? `<div style="margin-top:18px;"><img src="${barcodeSVG(r.numero)}" alt="" style="width:62mm;height:12mm;display:block;" /><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;margin-top:3px;">${escapeHtml(r.numero)}</div></div>` : ''}
+      <div class="fiche-sig-label">Signature électronique</div>
+      <img class="fiche-sig-img" src="${r.signature}" />
+      <div class="fiche-foot">Document généré depuis la plate-forme digitale d'adhésion — ${MOUVEMENT}, ${LOCALITE} — Comité : ${escapeHtml(r.comite||'—')}</div>
+    </div>
+  `;
+}
+
+// ---------- IMPRESSION : fenêtre dédiée (plus fiable que le print-area caché,
+// notamment sur mobile ou quand le fichier est ouvert en local file://) ----------
+const PRINT_CSS = `
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:'Inter',sans-serif;color:#16233F;background:#fff;}
+  .fiche{font-family:'Inter',sans-serif;color:#16233F;padding:24px;page-break-after:always;}
+  .fiche:last-child{page-break-after:auto;}
+  .fiche .fiche-head{display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:2px solid #16233F;padding-bottom:14px;margin-bottom:22px;}
+  .fiche .fiche-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:#1F4E8C;font-weight:700;}
+  .fiche .fiche-title{font-family:'Fraunces',serif;font-size:18px;font-weight:600;margin:2px 0 0;}
+  .fiche table{width:100%;border-collapse:collapse;font-size:14px;}
+  .fiche table td{padding:9px 0;border-bottom:1px solid #EFEFF3;vertical-align:top;}
+  .fiche table td.k{color:#4A5670;width:180px;}
+  .fiche table td.v{font-weight:600;}
+  .fiche .fiche-sig-label{font-size:11px;color:#8A90A0;margin:22px 0 6px;}
+  .fiche .fiche-sig-img{max-width:280px;border:1px solid #D8DCE4;border-radius:8px;padding:10px;background:#fff;display:block;}
+  .fiche .fiche-foot{margin-top:30px;font-size:10.5px;color:#8A90A0;border-top:1px dotted #B7BDC9;padding-top:10px;}
+
+  .carte-page{display:flex;align-items:center;justify-content:center;gap:10mm;padding:3mm 0 5mm;break-inside:avoid;page-break-inside:avoid;border-bottom:0.3mm dashed #C9CFC9;}
+  .carte-page:last-child{page-break-after:auto;}
+  .carte-membre{width:85.6mm;height:54mm;border-radius:3.5mm;position:relative;overflow:hidden;font-family:'Inter',sans-serif;color:#fff;background:linear-gradient(135deg, #00622E 0%, #00853F 55%, #046b34 100%);box-shadow:0 2px 10px rgba(0,0,0,0.25);padding:4mm 4.5mm;box-sizing:border-box;}
+  .carte-membre.verso{background:#F6F8F5;color:#1B2B22;display:flex;flex-direction:column;justify-content:space-between;}
+  .carte-membre .cm-flagstripe{position:absolute;top:0;left:0;right:0;height:2.6mm;background:linear-gradient(90deg, #00853F 0 33.33%, #FDEF42 33.33% 66.66%, #E31B23 66.66% 100%);}
+  .carte-membre .cm-head{display:flex;justify-content:space-between;align-items:flex-start;margin-top:2mm;}
+  .carte-membre .cm-republique{font-size:6.2pt;letter-spacing:.06em;text-transform:uppercase;opacity:.85;}
+  .carte-membre .cm-parti{font-family:'Fraunces',serif;font-weight:600;font-size:9pt;margin-top:1mm;line-height:1.15;}
+  .carte-membre .cm-badge{font-family:'IBM Plex Mono',monospace;font-size:6pt;letter-spacing:.08em;background:rgba(255,255,255,0.18);border:1px solid rgba(255,255,255,0.5);border-radius:3px;padding:2px 5px;white-space:nowrap;}
+  .carte-membre .cm-title{font-family:'IBM Plex Mono',monospace;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;margin-top:3mm;opacity:.85;}
+  .carte-membre .cm-nom{font-family:'Fraunces',serif;font-weight:600;font-size:13pt;margin-top:0.5mm;line-height:1.15;}
+  .carte-membre .cm-cellule{font-size:7.5pt;margin-top:1mm;opacity:.95;}
+  .carte-membre .cm-foot{position:absolute;left:4.5mm;right:4.5mm;bottom:3mm;display:flex;justify-content:space-between;align-items:flex-end;font-family:'IBM Plex Mono',monospace;font-size:6.4pt;letter-spacing:.02em;}
+  .carte-membre .cm-pill{display:inline-block;padding:1.5px 6px;border-radius:8px;font-weight:700;font-size:6.2pt;}
+  .carte-membre .cm-pill.oui{background:#E3F3EA;color:#00622E;}
+  .carte-membre .cm-pill.non{background:#FBE7E7;color:#A23E34;}
+  .carte-membre.verso .cm-v-head{font-family:'IBM Plex Mono',monospace;font-size:6.5pt;letter-spacing:.05em;color:#4A5C4F;text-transform:uppercase;margin-top:2mm;}
+  .carte-membre.verso .cm-v-row{display:flex;justify-content:space-between;font-size:7.2pt;padding:1.6mm 0;border-bottom:0.4pt dotted #B7BDC9;}
+  .carte-membre.verso .cm-v-row .k{color:#4A5C4F;}
+  .carte-membre.verso .cm-v-row .v{font-weight:600;font-family:'IBM Plex Mono',monospace;}
+  .carte-membre.verso .cm-sig-label{font-size:6pt;color:#8A90A0;margin-top:2mm;}
+  .carte-membre.verso .cm-sig-img{height:9mm;max-width:32mm;object-fit:contain;border:0.4pt solid #D8DCE4;border-radius:2px;background:#fff;padding:1mm;}
+  .carte-membre.verso .cm-v-foot{font-size:5.6pt;color:#9AA1B0;line-height:1.35;}
+  .carte-membre .cm-bc{background:#fff;border-radius:1.2mm;padding:1mm 1.5mm .7mm;text-align:center;color:#1B2B22;font-family:'IBM Plex Mono',monospace;font-size:5.4pt;line-height:1;}
+  .carte-membre .cm-bc img{display:block;width:38mm;height:6mm;margin:0 auto .5mm;}
+  .carte-membre.verso .cm-v-row{padding:0.9mm 0;}
+  .carte-membre.verso .cm-v-bottom{display:flex;justify-content:space-between;align-items:flex-end;}
+  .carte-membre.verso .cm-qr{width:13mm;height:13mm;image-rendering:pixelated;}
+  .fiche .fiche-photo{width:30mm;height:40mm;object-fit:cover;border:1px solid #D8DCE4;border-radius:4px;flex-shrink:0;}
+  .carte-membre .cm-photo{position:absolute;right:4.5mm;top:12mm;width:20mm;height:26.6mm;object-fit:cover;border:0.5mm solid #fff;border-radius:1.5mm;background:#fff;}
+  .carte-membre.has-photo .cm-nom,.carte-membre.has-photo .cm-cellule,.carte-membre.has-photo .cm-title{max-width:56mm;}
+  .carte-membre.recto{background:linear-gradient(90deg,#BFE3CC 0 33.33%,#FFF2A8 33.33% 66.66%,#F7C6C9 66.66% 100%);color:#0F2A44;box-shadow:0 2px 10px rgba(15,42,68,.20);isolation:isolate;}
+  .carte-membre.recto::before{content:'';position:absolute;left:50%;top:56%;width:19mm;height:19mm;transform:translate(-50%,-50%);background:rgba(0,133,63,.18);clip-path:polygon(50% 0%,61.2% 34.5%,97.6% 34.5%,68.2% 55.9%,79.4% 90.5%,50% 69.1%,20.6% 90.5%,31.8% 55.9%,2.4% 34.5%,38.8% 34.5%);z-index:-1;}
+  .carte-membre.recto .cm-republique,.carte-membre.recto .cm-title{opacity:1;color:#2B4A6A;}
+  .carte-membre.recto .cm-parti{color:#005A28;}
+  .carte-membre.recto .cm-nom,.carte-membre.recto .cm-cellule{opacity:1;color:#0F2A44;}
+  .carte-membre.recto .cm-badge{background:rgba(255,255,255,.65);border:1px solid rgba(15,42,68,.35);color:#0F2A44;}
+  .carte-membre.recto .cm-pill.oui{background:#fff;color:#00622E;border:0.25mm solid #7CB896;}
+  .carte-membre .cm-bc{border:0.25mm solid #8FA99A;}
+  .carte-membre .cm-photo{box-shadow:0 0 0 0.2mm #8FA99A;}
+  .carte-membre.verso{background:linear-gradient(90deg,#E6F4EC 0 33.33%,#FFFBDA 33.33% 66.66%,#FCE6E7 66.66% 100%);color:#0F2A44;}
+  .carte-membre.verso .cm-v-head,.carte-membre.verso .cm-v-row .k{color:#34506B;}
+  .carte-membre.verso .cm-sig-label,.carte-membre.verso .cm-v-foot{color:#5A7592;}
+  @media print{ @page{ margin:10mm; } }
+`;
+
+function openPrintWindow(title, bodyHtml){
+  const win = window.open('', '_blank');
+  if(!win){
+    alert("Le navigateur a bloqué l'ouverture de la fenêtre d'impression. Autorisez les pop-ups pour ce site (ou ce fichier) puis réessayez.");
+    return;
+  }
+  win.document.open();
+  win.document.write(`<!DOCTYPE html><html lang="fr"><head><meta charset="UTF-8">
+    <title>${title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>${PRINT_CSS}</style>
+    </head><body>${bodyHtml}</body></html>`);
+  win.document.close();
+  const triggerPrint = ()=>{ try{ win.focus(); win.print(); }catch(e){} };
+  if(win.document.readyState === 'complete'){
+    setTimeout(triggerPrint, 300);
+  }else{
+    win.onload = ()=> setTimeout(triggerPrint, 200);
+    setTimeout(triggerPrint, 700); // filet de sécurité si onload ne se déclenche pas
+  }
+}
+
+function printFiches(records){
+  if(!records || !records.length) return;
+  const html = records.map(ficheHTML).join('');
+  openPrintWindow("Fiches d'adhésion — " + MOUVEMENT, html);
+}
+
+document.getElementById('print-all-btn').addEventListener('click', ()=>{
+  printFiches(currentRecords);
+});
+
+// ---------- QR CODE D'ADHÉSION ----------
+function getAdhesionLink(){
+  // Lien public du formulaire : la page elle-même, sans le hash de l'espace responsable.
+  const url = new URL(window.location.href);
+  url.hash = ''; url.search = '';
+  const cid = qrOverride ? qrOverride.id : currentComiteId(); if(cid) url.search = '?c=' + encodeURIComponent(cid);
+  return url.toString();
+}
+function buildQrDataURL(text, cellSize){
+  const qr = qrcode(0, 'M');
+  qr.addData(text);
+  qr.make();
+  return qr.createDataURL(cellSize || 6, 8);
+}
+document.getElementById('qr-btn').addEventListener('click', ()=>{ qrOverride = null; showQr(); });
+function showQr(){
+  const link = getAdhesionLink();
+  document.getElementById('qr-link').value = link;
+  document.getElementById('qr-canvas-wrap').innerHTML =
+    `<img src="${buildQrDataURL(link, 6)}" alt="QR code d'adhésion" style="width:220px;height:220px;image-rendering:pixelated;" />`;
+  document.getElementById('qr-modal').classList.add('show');
+}
+document.getElementById('qr-close-btn').addEventListener('click', ()=>{
+  document.getElementById('qr-modal').classList.remove('show');
+});
+document.getElementById('qr-modal').addEventListener('click', (e)=>{
+  if(e.target.id === 'qr-modal'){ document.getElementById('qr-modal').classList.remove('show'); }
+});
+document.getElementById('qr-copy-btn').addEventListener('click', ()=>{
+  const link = document.getElementById('qr-link').value;
+  const btn = document.getElementById('qr-copy-btn');
+  const done = ()=>{ const old = btn.textContent; btn.textContent = 'Lien copié ✓'; setTimeout(()=> btn.textContent = old, 1600); };
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(link).then(done).catch(()=>{
+      const inp = document.getElementById('qr-link'); inp.select(); document.execCommand('copy'); done();
+    });
+  }else{
+    const inp = document.getElementById('qr-link'); inp.select(); document.execCommand('copy'); done();
+  }
+});
+document.getElementById('qr-print-btn').addEventListener('click', ()=>{
+  const link = getAdhesionLink();
+  const qrImg = buildQrDataURL(link, 8);
+  const html = `
+    <div class="fiche" style="text-align:center;padding:40px 30px;">
+      <div class="fiche-eyebrow">République du Sénégal — ${MOUVEMENT}</div>
+      <div class="fiche-eyebrow" style="margin-top:2px;">Leader : ${LEADER} · ${LOCALITE}</div>
+      <h1 style="font-family:'Fraunces',serif;font-size:30px;margin:22px 0 6px;">Adhérez à AND DOLEL KAW<br/>${currentComiteNom() ? 'Comité : ' + escapeHtml(currentComiteNom()) : 'Mouvement de Mamadou Diouf dit Kaw'}</h1>
+      <p style="font-size:14px;color:var(--ink-soft);margin:0 0 24px;">Scannez ce QR code avec l'appareil photo de votre téléphone pour rejoindre le comité en ligne.</p>
+      <img src="${qrImg}" alt="QR code d'adhésion" style="width:260px;height:260px;image-rendering:pixelated;" />
+      <p style="font-family:'IBM Plex Mono',monospace;font-size:12px;margin-top:22px;word-break:break-all;">${link}</p>
+      <div class="fiche-foot" style="margin-top:30px;">${MOUVEMENT} — ${LOCALITE}${currentComiteNom() ? ' — Comité : ' + escapeHtml(currentComiteNom()) : ''}</div>
+    </div>`;
+  openPrintWindow("Adhérer — " + MOUVEMENT, html);
+});
+
+// ---------- CARTE DE MEMBRE (recto/verso) ----------
+function carteMembreHTML(r){
+  const d = new Date(r.date);
+  const dateStr = d.toLocaleDateString('fr-FR');
+  const vote = [r.centreVote, r.bureauVote].filter(Boolean).join(' · ');
+  const qr = buildQrDataURL([MOUVEMENT, r.numero || '', r.nom, r.comite || ''].join(' | '), 3);
+  return `
+    <div class="carte-page">
+      <div class="carte-membre recto${r.photo ? ' has-photo' : ''}">
+        <div class="cm-flagstripe"></div>
+        ${r.photo ? `<img class="cm-photo" src="${r.photo}" alt="" />` : ''}
+        <div class="cm-head">
+          <div>
+            <div class="cm-republique">République du Sénégal</div>
+            <div class="cm-parti">AND DOLEL<br/>KAW</div>
+          </div>
+          <div class="cm-badge">KOUNGHEUL</div>
+        </div>
+        <div class="cm-title">Carte de membre</div>
+        <div class="cm-nom">${escapeHtml(r.nom)}</div>
+        <div class="cm-cellule">Comité : ${escapeHtml(r.comite||'—')}</div>
+        <div class="cm-foot">
+          ${r.numero ? `<div class="cm-bc"><img src="${barcodeSVG(r.numero)}" alt="" /><span>${escapeHtml(r.numero)}</span></div>` : '<span>N° —</span>'}
+          <span class="cm-pill ${r.accord==='Oui'?'oui':'non'}">${r.accord==='Oui' ? 'Membre actif' : 'Non confirmé'}</span>
+        </div>
+      </div>
+      <div class="carte-membre verso">
+        <div>
+          <div class="cm-v-head">Informations du membre</div>
+          <div class="cm-v-row"><span class="k">Quartier</span><span class="v">${escapeHtml(r.section)}</span></div>
+          <div class="cm-v-row"><span class="k">Téléphone</span><span class="v">${escapeHtml(r.telephone)}</span></div>
+          ${vote ? `<div class="cm-v-row"><span class="k">Vote</span><span class="v">${escapeHtml(vote)}</span></div>` : ''}
+          <div class="cm-v-row"><span class="k">Membre depuis le</span><span class="v">${dateStr}</span></div>
+        </div>
+        <div class="cm-v-bottom">
+          <div>
+            <div class="cm-sig-label">Signature du membre</div>
+            <img class="cm-sig-img" src="${r.signature}" />
+          </div>
+          ${qr ? `<img class="cm-qr" src="${qr}" alt="" />` : ''}
+        </div>
+        <div class="cm-v-foot">${MOUVEMENT} — ${LOCALITE}<br/>Comité : ${escapeHtml(r.comite||'—')}</div>
+      </div>
+    </div>
+  `;
+}
+
+// ---------- CODE-BARRES (Code 128) ----------
+const C128 = "212222 222122 222221 121223 121322 131222 122213 122312 132212 221213 221312 231212 112232 122132 122231 113222 123122 123221 223211 221132 221231 213212 223112 312131 311222 321122 321221 312212 322112 322211 212123 212321 232121 111323 131123 131321 112313 132113 132311 211313 231113 231311 112133 112331 132131 113123 113321 133121 313121 211331 231131 213113 213311 213131 311123 311321 331121 312113 312311 332111 314111 221411 431111 111224 111422 121124 121421 141122 141221 112214 112412 122114 122411 142112 142211 241211 221114 413111 241112 134111 111242 121142 121241 114212 124112 124211 411212 421112 421211 212141 214121 412121 111143 111341 131141 114113 114311 411113 411311 113141 114131 311141 411131 211412 211214 211232 2331112".split(' ');
+function code128Bits(text){
+  const t = String(text || '').replace(/[^\x20-\x7E]/g, '');
+  if(!t) return '';
+  const codes = [104]; let sum = 104;
+  for(let i = 0; i < t.length; i++){ const c = t.charCodeAt(i) - 32; codes.push(c); sum += c * (i + 1); }
+  codes.push(sum % 103, 106);
+  let bits = '', bar = true;
+  codes.forEach(c => { C128[c].split('').forEach(w => { bits += (bar ? '1' : '0').repeat(Number(w)); bar = !bar; }); bar = true; });
+  return bits;
+}
+function barcodeSVG(text){
+  const bits = code128Bits(text); if(!bits) return '';
+  const Q = 10; let rects = '', i = 0;
+  while(i < bits.length){
+    if(bits[i] === '1'){ let j = i; while(j < bits.length && bits[j] === '1') j++; rects += `<rect x="${i + Q}" y="0" width="${j - i}" height="40"/>`; i = j; } else i++;
+  }
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${bits.length + 2 * Q} 40" preserveAspectRatio="none" shape-rendering="crispEdges"><rect width="100%" height="100%" fill="#fff"/><g fill="#000">${rects}</g></svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+}
+function drawBarcode(x, text, bx, by, bw, bh){
+  const bits = code128Bits(text); if(!bits) return;
+  const m = Math.max(2, Math.floor(bw / bits.length)), tw = m * bits.length, x0 = bx + (bw - tw) / 2;
+  x.fillStyle = '#000';
+  for(let i = 0; i < bits.length; ){
+    if(bits[i] === '1'){ let j = i; while(j < bits.length && bits[j] === '1') j++; x.fillRect(x0 + i * m, by, (j - i) * m, bh); i = j; } else i++;
+  }
+}
+
+// ---------- CARTE EN IMAGE (PNG) ----------
+const MM = 300 / 25.4, PT = MM * 25.4 / 72;   // 300 dpi
+const CW = Math.round(85.6 * MM), CH = Math.round(54 * MM);
+function loadImg(src){
+  return new Promise(res => { if(!src) return res(null); const i = new Image(); i.onload = () => res(i); i.onerror = () => res(null); i.src = src; });
+}
+function rr(x, a, b, w, h, r){
+  x.beginPath(); x.moveTo(a + r, b); x.arcTo(a + w, b, a + w, b + h, r); x.arcTo(a + w, b + h, a, b + h, r);
+  x.arcTo(a, b + h, a, b, r); x.arcTo(a, b, a + w, b, r); x.closePath();
+}
+function fitText(x, t, maxW){
+  t = String(t || ''); if(x.measureText(t).width <= maxW) return t;
+  while(t.length > 1 && x.measureText(t + '…').width > maxW) t = t.slice(0, -1);
+  return t + '…';
+}
+function wrapLines(x, t, maxW, maxLines){
+  const words = String(t || '').split(/\s+/), lines = []; let cur = '';
+  words.forEach(w => { const n = cur ? cur + ' ' + w : w; if(x.measureText(n).width > maxW && cur){ lines.push(cur); cur = w; } else cur = n; });
+  if(cur) lines.push(cur);
+  if(lines.length > maxLines){ lines.length = maxLines; lines[maxLines - 1] = fitText(x, lines[maxLines - 1] + '…', maxW); }
+  return lines;
+}
+function setFont(x, w, pt, fam){ x.font = `${w} ${Math.round(pt * PT)}px ${fam}`; }
+const F_SER = "Fraunces, Georgia, serif", F_SANS = "Inter, Arial, sans-serif", F_MONO = "'IBM Plex Mono', monospace";
+
+function starPath(x, cx, cy, R){
+  const r = R * 0.382; x.beginPath();
+  for(let i = 0; i < 10; i++){ const a = -Math.PI / 2 + i * Math.PI / 5, d = i % 2 ? r : R; x[i ? 'lineTo' : 'moveTo'](cx + d * Math.cos(a), cy + d * Math.sin(a)); }
+  x.closePath();
+}
+function flagBands(x, cols){ cols.forEach((c, i) => { x.fillStyle = c; x.fillRect(Math.floor(CW / 3 * i), 0, Math.ceil(CW / 3) + 1, CH); }); }
+async function carteCanvas(r){
+  try{ await Promise.all([document.fonts.load('600 40px Fraunces'), document.fonts.load('500 40px Inter'), document.fonts.load('500 40px "IBM Plex Mono"'), document.fonts.ready]); }catch(e){}
+  const [photo, sig, qrImg] = await Promise.all([
+    loadImg(r.photo), loadImg(r.signature),
+    loadImg(buildQrDataURL([MOUVEMENT, r.numero || '', r.nom, r.comite || ''].join(' | '), 6))
+  ]);
+  const PAD = 40, GAP = 40, c = document.createElement('canvas');
+  c.width = CW + PAD * 2; c.height = CH * 2 + GAP + PAD * 2;
+  const x = c.getContext('2d'); x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
+  const side = 4.5 * MM, R = 3.5 * MM, right = CW - side;
+
+  // ----- RECTO -----
+  x.save(); x.translate(PAD, PAD); rr(x, 0, 0, CW, CH, R); x.clip();
+  flagBands(x, ['#BFE3CC', '#FFF2A8', '#F7C6C9']);
+  x.fillStyle = 'rgba(0,133,63,.18)'; starPath(x, CW / 2, CH * 0.56, 9.5 * MM); x.fill();
+  const sh = 2.6 * MM; ['#00853F', '#FDEF42', '#E31B23'].forEach((col, i) => { x.fillStyle = col; x.fillRect(CW / 3 * i, 0, CW / 3 + 1, sh); });
+  x.textBaseline = 'top'; x.fillStyle = '#2B4A6A';
+  x.globalAlpha = 1; setFont(x, 500, 6.2, F_SANS); x.fillText('RÉPUBLIQUE DU SÉNÉGAL', side, 6 * MM); x.globalAlpha = 1;
+  x.fillStyle = '#005A28'; setFont(x, 600, 9, F_SERIF_FIX()); x.fillText('AND DOLEL', side, 9.6 * MM); x.fillText('KAW', side, 13.25 * MM);
+  setFont(x, 500, 6, F_MONO);
+  const bt = 'KOUNGHEUL', bw = x.measureText(bt).width + 2.6 * MM, bh = 6 * PT + 1.4 * MM, bx = right - bw, by = 6 * MM;
+  x.fillStyle = 'rgba(255,255,255,.65)'; rr(x, bx, by, bw, bh, 3); x.fill();
+  x.strokeStyle = 'rgba(15,42,68,.35)'; x.lineWidth = 2; x.stroke();
+  x.fillStyle = '#0F2A44'; x.fillText(bt, bx + 1.3 * MM, by + .7 * MM);
+  x.fillStyle = '#2B4A6A'; x.globalAlpha = 1; setFont(x, 500, 7, F_MONO); x.fillText('CARTE DE MEMBRE', side, 19.9 * MM); x.globalAlpha = 1;
+  const maxW = (photo ? 56 * MM : CW - 2 * side);
+  setFont(x, 600, 13, F_SERIF_FIX()); x.fillStyle = '#0F2A44';
+  const lines = wrapLines(x, r.nom, maxW, 2); let y = 23.6 * MM;
+  lines.forEach(l => { x.fillText(l, side, y); y += 13 * PT * 1.15; });
+  x.fillStyle = '#0F2A44'; setFont(x, 500, 7.5, F_SANS); x.fillText(fitText(x, 'Comité : ' + (r.comite || '—'), maxW), side, y + 1 * MM);
+  if(photo){
+    const pw = 20 * MM, ph = 26.6 * MM, px = right - pw, py = 12 * MM;
+    x.fillStyle = '#fff'; rr(x, px, py, pw, ph, 1.5 * MM); x.fill(); x.strokeStyle = '#8FA99A'; x.lineWidth = 2; x.stroke();
+    x.save(); rr(x, px + .5 * MM, py + .5 * MM, pw - MM, ph - MM, 1 * MM); x.clip();
+    const k = Math.max((pw - MM) / photo.width, (ph - MM) / photo.height), dw = photo.width * k, dh = photo.height * k;
+    x.drawImage(photo, px + (pw - dw) / 2, py + (ph - dh) / 2, dw, dh); x.restore();
+  }
+  setFont(x, 500, 6.4, F_MONO); x.fillStyle = '#fff';
+  const fy = CH - 3 * MM - 6.4 * PT;
+  if(r.numero){
+    const bxw = 41 * MM, bxh = 9 * MM, bxy = CH - 3 * MM - bxh;
+    x.fillStyle = '#fff'; rr(x, side, bxy, bxw, bxh, 1.2 * MM); x.fill(); x.strokeStyle = '#8FA99A'; x.lineWidth = 2; x.stroke();
+    drawBarcode(x, r.numero, side + 1.5 * MM, bxy + 1 * MM, bxw - 3 * MM, 5.6 * MM);
+    x.fillStyle = '#1B2B22'; setFont(x, 500, 5.4, F_MONO); x.textAlign = 'center';
+    x.fillText(r.numero, side + bxw / 2, bxy + 1 * MM + 5.6 * MM + .5 * MM); x.textAlign = 'left';
+  }else{ x.fillText('N° —', side, fy); }
+  const pl = r.accord === 'Oui' ? 'Membre actif' : 'Non confirmé';
+  setFont(x, 700, 6.2, F_SANS);
+  const pw2 = x.measureText(pl).width + 3 * MM, ph2 = 6.2 * PT + 1 * MM;
+  x.fillStyle = r.accord === 'Oui' ? '#FFFFFF' : '#FBE7E7'; rr(x, right - pw2, fy - .2 * MM, pw2, ph2, ph2 / 2); x.fill(); x.strokeStyle = r.accord === 'Oui' ? '#7CB896' : '#E0A3A3'; x.lineWidth = 2; x.stroke();
+  x.fillStyle = r.accord === 'Oui' ? '#00622E' : '#A23E34'; x.fillText(pl, right - pw2 + 1.5 * MM, fy + .3 * MM);
+  x.restore();
+
+  // ----- VERSO -----
+  x.save(); x.translate(PAD, PAD + CH + GAP); rr(x, 0, 0, CW, CH, R); x.clip();
+  flagBands(x, ['#E6F4EC', '#FFFBDA', '#FCE6E7']);
+  x.strokeStyle = '#C9D8CE'; x.lineWidth = 2; rr(x, 1, 1, CW - 2, CH - 2, R); x.stroke();
+  x.textBaseline = 'top'; x.fillStyle = '#34506B'; setFont(x, 500, 6.5, F_MONO);
+  x.fillText('INFORMATIONS DU MEMBRE', side, 6 * MM);
+  const vote = [r.centreVote, r.bureauVote].filter(Boolean).join(' · ');
+  const rows = [['Quartier', r.section], ['Téléphone', r.telephone]];
+  if(vote) rows.push(['Vote', vote]);
+  rows.push(['Membre depuis le', new Date(r.date).toLocaleDateString('fr-FR')]);
+  let ry = 8.6 * MM; const rh = 4.8 * MM;
+  rows.forEach(([k, v]) => {
+    setFont(x, 500, 7.2, F_SANS); x.fillStyle = '#34506B'; const kw = x.measureText(k).width; x.fillText(k, side, ry + .9 * MM);
+    setFont(x, 600, 7.2, F_MONO); x.fillStyle = '#0F2A44';
+    const t = fitText(x, v, right - side - kw - 3 * MM); x.fillText(t, right - x.measureText(t).width, ry + .9 * MM);
+    x.strokeStyle = '#8FA99A'; x.lineWidth = 1; x.setLineDash([3, 4]); x.beginPath(); x.moveTo(side, ry + rh); x.lineTo(right, ry + rh); x.stroke(); x.setLineDash([]);
+    ry += rh;
+  });
+  const ft = CH - 3.2 * MM - 2 * 5.6 * PT * 1.35, bottom = ft - 1 * MM;
+  if(qrImg){ x.imageSmoothingEnabled = false; x.drawImage(qrImg, right - 12 * MM, bottom - 12 * MM, 12 * MM, 12 * MM); x.imageSmoothingEnabled = true; }
+  setFont(x, 500, 6, F_SANS); x.fillStyle = '#5A7592'; x.fillText('Signature du membre', side, bottom - 9.6 * MM - 6 * PT - .6 * MM);
+  if(sig){
+    const sh2 = 8 * MM, sw2 = Math.min(32 * MM, sh2 * sig.width / sig.height);
+    x.fillStyle = '#fff'; rr(x, side, bottom - 9.6 * MM, sw2 + 2 * MM, 9.6 * MM, 2); x.fill(); x.strokeStyle = '#D8DCE4'; x.lineWidth = 1; x.stroke();
+    x.drawImage(sig, side + MM, bottom - 8.8 * MM, sw2, sh2);
+  }
+  setFont(x, 500, 5.6, F_SANS); x.fillStyle = '#5A7592';
+  x.fillText(MOUVEMENT + ' — ' + LOCALITE, side, ft); x.fillText('Comité : ' + (r.comite || '—'), side, ft + 5.6 * PT * 1.35);
+  x.restore();
+  return c;
+}
+function F_SERIF_FIX(){ return F_SER; }
+function safeName(t){ return String(t || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^A-Za-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 40); }
+async function downloadCartes(records){
+  if(!records || !records.length){ alert('Aucune carte à télécharger.'); return; }
+  if(records.length > 10 && !confirm(records.length + ' images vont être téléchargées. Continuer ?')) return;
+  for(let i = 0; i < records.length; i++){
+    const r = records[i], c = await carteCanvas(r);
+    const blob = await new Promise(res => c.toBlob(res, 'image/png'));
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob); a.download = 'carte-' + safeName((r.numero || '') + '-' + r.nom) + '.png';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    await new Promise(res => setTimeout(res, 500));
+  }
+}
+document.getElementById('png-cards-btn').addEventListener('click', ()=> downloadCartes(currentRecords));
+
+function printCartes(records){
+  if(!records || !records.length) return;
+  const html = records.map(carteMembreHTML).join('');
+  openPrintWindow("Cartes de membre — " + MOUVEMENT, html);
+}
+
+document.getElementById('print-cards-btn').addEventListener('click', ()=>{
+  printCartes(currentRecords);
+});
+
+function openLightbox(src){
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox').classList.add('show');
+}
+document.getElementById('lightbox').addEventListener('click', ()=>{
+  document.getElementById('lightbox').classList.remove('show');
+});
+
+document.getElementById('refresh-btn').addEventListener('click', loadSubmissions);
+
+document.getElementById('export-btn').addEventListener('click', ()=>{
+  if(currentRecords.length===0) return;
+  const headers = ['Numero','Nom','CNI','Comite','Quartier','Telephone','CarteElecteur','CentreVote','BureauVote','Adhesion','Date'];
+  const rows = currentRecords.map(r=>{
+    const d = new Date(r.date);
+    const dateStr = d.toLocaleDateString('fr-FR') + ' ' + d.toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+    return [(r.numero||''), r.nom, r.matricule, (r.comite||''), r.section, r.telephone, (r.carteElecteur||''), (r.centreVote||''), (r.bureauVote||''), r.accord, dateStr]
+      .map(v => `"${String(v).replace(/"/g,'""')}"`).join(',');
+  });
+  const csv = headers.join(',') + '\n' + rows.join('\n');
+  const blob = new Blob(["\ufeff"+csv], {type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'adhesions_mouvement_' + new Date().toISOString().slice(0,10) + '.csv';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+});
+
+</script>
+</body>
+</html>
