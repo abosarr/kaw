@@ -686,6 +686,16 @@ var qrcode=function(){var t=function(t,r){var e=t,n=g[r],o=null,i=0,a=null,u=[],
 // 2) Le code d'accès n'est plus stocké ici : il est saisi à l'écran et vérifié côté
 //    serveur (voir la constante SECRET dans Code.gs).
 const API_URL = "https://script.google.com/macros/s/AKfycbyBNtgjN-OSarsbm7_-IW0LYNkOELJjfxYxUb4mp0_OrPah3AHaamnrpd_kPbyhchictw/exec";   // ← collez ici l'URL /exec de VOTRE déploiement Google Apps Script (voir Code.gs)
+const MSG_NET = "Impossible de joindre le serveur. Vérifiez la connexion internet et que API_URL est bien l'URL « Application Web » qui se termine par /exec.";
+const MSG_BAD = "Le serveur répond, mais pas avec des données valides. Dans Apps Script : déploiement en « Exécuter en tant que : moi » et « Accès : tout le monde », autorisations acceptées (exécutez initialiser() une fois dans l'éditeur), puis Déployer > Nouvelle version.";
+async function jsonSafe(res){ try{ return await res.json(); }catch(e){ const er = new Error(MSG_BAD); er.kind = 'bad'; throw er; } }
+function erreurServeur(e){
+  if(!API_URL) return "Plate-forme non configurée : renseignez API_URL (voir Code.gs).";
+  return (e && e.kind === 'bad') ? MSG_BAD : MSG_NET;
+}
+if(API_URL && !/^https:\/\/script\.google\.com\/(?:a\/)?macros\/(?:[^\/]+\/)?s\/[^\/]+\/exec$/.test(API_URL)){
+  document.body.insertAdjacentHTML('afterbegin', '<div id="cfg-banner" style="background:#FDECEC;color:#8A1C1C;border-bottom:2px solid #E31B23;padding:12px 16px;font-size:13.5px;line-height:1.5;text-align:center;"><b>Adresse du serveur incorrecte.</b> <b>API_URL</b> doit ressembler à <b>https://script.google.com/macros/s/…/exec</b> (URL « Application Web » du déploiement, pas celle de l\'éditeur ni de « Tester les déploiements »).</div>');
+}
 if(!API_URL){
   // Aucune requête n'est envoyée tant que le serveur du mouvement n'est pas renseigné.
   window.fetch = () => Promise.reject(new Error('Plate-forme non configurée : renseignez API_URL.'));
@@ -701,10 +711,10 @@ async function loadComites(){
   const sel = document.getElementById('comite');
   try{
     const res = await fetch(API_URL + '?action=comites');
-    const data = await res.json();
+    const data = await jsonSafe(res);
     comitesList = (data && data.ok && data.comites) || [];
   }catch(e){ comitesList = []; }
-  if(!comitesList.length){ sel.innerHTML = '<option value="">' + (API_URL ? 'Comités indisponibles — réessayez plus tard' : 'Plate-forme non configurée') + '</option>'; return; }
+  if(!comitesList.length){ sel.innerHTML = '<option value="">' + (API_URL ? 'Serveur injoignable — vérifiez API_URL' : 'Plate-forme non configurée') + '</option>'; return; }
   sel.innerHTML = '<option value="">— Choisir votre comité —</option>' +
     comitesList.map(c=>`<option value="${escapeHtml(c.id)}">${escapeHtml(c.nom)}</option>`).join('');
   const pre = new URLSearchParams(location.search).get('c');
@@ -740,9 +750,10 @@ loadComites();
 let qrOverride = null, manageComites = [], editingId = '', editingMatricule = '';
 const $ = id => document.getElementById(id);
 async function api(body){
-  const res = await fetch(API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'},
-    body: JSON.stringify(Object.assign({secret: sessionSecret}, body))});
-  const d = await res.json();
+  let res;
+  try{ res = await fetch(API_URL, {method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'},
+    body: JSON.stringify(Object.assign({secret: sessionSecret}, body))}); }catch(e){ throw new Error(erreurServeur(e)); }
+  const d = await jsonSafe(res);
   if(!d || !d.ok) throw new Error(d && d.error ? d.error : 'Réponse invalide du serveur.');
   return d;
 }
@@ -986,7 +997,7 @@ cniInput.addEventListener('input', ()=>{
   dupCheckTimer = setTimeout(async ()=>{
     try{
       const res = await fetch(API_URL + '?action=check&matricule=' + encodeURIComponent(cni));
-      const data = await res.json();
+      const data = await jsonSafe(res);
       if(data && data.ok && data.exists){
         warn.textContent = 'Une confirmation existe déjà pour ce numéro de CNI (' + data.nom + (data.comite ? ', comité ' + data.comite : '') + '). L\'envoyer remplacera la précédente.';
         warn.style.display='block';
@@ -1041,7 +1052,7 @@ document.getElementById('submit-btn').addEventListener('click', async ()=>{
       headers: {'Content-Type': 'text/plain;charset=utf-8'},
       body: JSON.stringify(record)
     });
-    const resData = await res.json();
+    const resData = await jsonSafe(res);
     if(!resData || !resData.ok){
       throw new Error(resData && resData.error ? resData.error : 'Réponse invalide du serveur.');
     }
@@ -1064,7 +1075,7 @@ document.getElementById('submit-btn').addEventListener('click', async ()=>{
     document.getElementById('form-card').style.display='none';
     document.getElementById('confirm-card').style.display='block';
   }catch(e){
-    errorEl.textContent = "Une erreur est survenue lors de l'enregistrement (" + e.message + "). Réessayez.";
+    errorEl.textContent = (e && (e.kind === 'bad' || e.name === 'TypeError')) ? erreurServeur(e) : "Une erreur est survenue lors de l'enregistrement (" + e.message + "). Réessayez.";
     errorEl.style.display='block';
   }
   btn.disabled = false; btn.textContent = 'Confirmer et envoyer';
@@ -1102,7 +1113,7 @@ async function checkPin(){
   sessionSecret = val;
   try{
     const res = await fetch(API_URL + '?action=list&secret=' + encodeURIComponent(val));
-    const data = await res.json();
+    const data = await jsonSafe(res);
     if(data && data.ok){
       document.getElementById('dash-gate').style.display='none';
       document.getElementById('dash-content').style.display='block';
@@ -1117,7 +1128,7 @@ async function checkPin(){
       err.style.display='block';
     }
   }catch(e){
-    err.textContent = API_URL ? "Impossible de contacter le serveur. Vérifiez la connexion." : "Plate-forme non configurée : renseignez API_URL (voir Code.gs).";
+    err.innerHTML = escapeHtml(erreurServeur(e)) + (API_URL ? ' <a href="' + API_URL + '?action=ping" target="_blank" rel="noopener">Tester l\'adresse du serveur</a>' : '');
     err.style.display='block';
   }
 }
@@ -1133,7 +1144,7 @@ const PAGE_SIZE = 15;
 async function loadSubmissions(){
   try{
     const res = await fetch(API_URL + '?action=list&secret=' + encodeURIComponent(sessionSecret));
-    const data = await res.json();
+    const data = await jsonSafe(res);
     if(!data || !data.ok){
       throw new Error(data && data.error ? data.error : 'Erreur inconnue');
     }
